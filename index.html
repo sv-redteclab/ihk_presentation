@@ -12,14 +12,6 @@
 		<link class="progress-bar-theme" rel="stylesheet" href="css/reveal-progress-bar-light.css">
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
 		<script>
 			const agenda = [
 				{ id: 'layout-center', title: 'Center' },
@@ -65,7 +57,6 @@
 
 				<section data-progress-bar-id="s1">
 					<h1>Slide 2</h1>
-
 					<svg id="svg1" height="150" width="500">
 						<ellipse id="e1" class="fragment" data-fragment-index="1" cx="240" cy="100" rx="220" ry="30" style="fill:purple" />
 						<ellipse id="e2" class="fragment aa always-visible" data-fragment-index="3" cx="220" cy="70" rx="190" ry="20" style="fill:lime" />
@@ -112,6 +103,15 @@
 					//{ src: 'plugin/reveal-agenda/reveal-agenda.js', async: true, callback: function() { reveal_agenda.initialize({ agenda, insertToPosition: 1 }); } },
 					{ src: 'plugin/reveal-progress-bar/reveal-progress-bar.js', async: true, callback: function() { reveal_progress_bar.initialize({ agenda }); } }
 				]
+			});
+
+			Reveal.configure({
+				keyboard: {
+					/* P */ 80: () => {
+						document.querySelector('.reveal .slides').setAttribute('style', '')
+						print()
+					},
+				}
 			});
 
 			Reveal.addEventListener('slidechanged', event => {

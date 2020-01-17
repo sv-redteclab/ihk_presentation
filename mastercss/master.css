@@ -69,6 +69,11 @@
   opacity: 1;
   visibility: inherit;
 }
+
+.progress-bar .progress-bar-entry {
+  text-align: center;
+}
+
 #svg1 .aa.visible {
   stroke: black;
   fill: red !important;
