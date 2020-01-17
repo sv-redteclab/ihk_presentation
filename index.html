@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Sven Vaupel - RedTecLab GmbH - 18168</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link class="progress-bar-style" rel="stylesheet" href="css/reveal-progress-bar.css">
+		<link class="theme" rel="stylesheet" href="css/theme/white.css">
+		<link class="progress-bar-theme" rel="stylesheet" href="css/reveal-progress-bar-light.css">
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<script>
+			const agenda = [
+				{ id: 'layout-center', title: 'Center' },
+				{ id: 'layout-columns', title: 'Columns' },
+				{ id: 's1', title: 'Section 1' },
+				{ id: 's2', title: 'Section 2' },
+				{ id: 's3', title: 'Section 3' },
+				{ id: 's4', title: 'Section 4' },
+			]
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section class="layout-center" data-progress-bar-show="false">
+						<h1 class="progress-bar-no-entry">Notepad-Service</h1>
+						<h4 class="progress-bar-no-entry">ehem. Wishlist-Service</h4>
+				</section>
+
+				<section class="layout-center" data-progress-bar-id="layout-center">
+					<h1>LAYOUT-CENTER</h1>
+					<h2>Subtitle</h2>
+					<p>text text text text text text</p>
+				</section>
+
+				<section class="layout-columns" data-progress-bar-id="layout-columns">
+					<h1>LAYOUT-COLUMNS</h1>
+					<div class="layout-columns-wrapper">
+						<p>text text text text text text</p>
+						<p>text text text text text text text text text text text text</p>
+						<p>text text text text text text</p>
+						<p>text text text text text text</p>
+					</div>
+				</section>
+
+				<section class="layout-two-cloumn" data-progress-bar-id="s1">
+					<p class="fragment">fade-in</p>
+					<p class="fragment fade-out">fade-out</p>
+					<p class="fragment fade-in-then-out">fade-in-then-out</p>
+					<p class="fragment fade-in-then-semi-out">fade-in-then-semi-out</p>
+					<p class="fragment">highlight-blue</p>
+				</section>
+
+				<section data-progress-bar-id="s1">
+					<h1>Slide 2</h1>
+
+					<svg id="svg1" height="150" width="500">
+						<ellipse id="e1" class="fragment" data-fragment-index="1" cx="240" cy="100" rx="220" ry="30" style="fill:purple" />
+						<ellipse id="e2" class="fragment aa always-visible" data-fragment-index="3" cx="220" cy="70" rx="190" ry="20" style="fill:lime" />
+						<ellipse id="e3" class="fragment aa always-visible" data-fragment-index="2" cx="210" cy="45" rx="170" ry="15" style="fill:yellow" />
+					</svg>
+				</section>
+				<section data-progress-bar-id="s1" data-progress-bar-show="false">
+					<h1>Slide 2</h1>
+				</section>
+				<section data-progress-bar-id="s2">
+					<h1>Slide 2</h1>
+				</section>
+				<section data-progress-bar-id="s1">
+					<h1>Slide 2</h1>
+				</section>
+				<section data-progress-bar-id="s3">
+					<h1>Slide 2</h1>
+				</section>
+				<section data-progress-bar-id="s3">
+					<h1>Slide 2</h1>
+				</section>
+			</div>
+		</div>
+
+		<#--  <script src="lib/js/head.min.js"></script>  -->
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				controls: false,
+				slideNumber: true,
+				// overview: false,
+				progress: false,
+				center: false,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					//{ src: 'plugin/reveal-agenda/reveal-agenda.js', async: true, callback: function() { reveal_agenda.initialize({ agenda, insertToPosition: 1 }); } },
+					{ src: 'plugin/reveal-progress-bar/reveal-progress-bar.js', async: true, callback: function() { reveal_progress_bar.initialize({ agenda }); } }
+				]
+			});
+
+			Reveal.addEventListener('slidechanged', event => {
+				console.log(event)
+				console.log(Reveal.getIndices())
+			})
+
+			Reveal.addEventListener( 'fragmentshown', function( event ) {
+				console.log(event)
+
+			} );
+			Reveal.addEventListener( 'fragmenthidden', function( event ) {
+				console.log(event)
+				// event.fragment = the fragment DOM element
+			} );
+		</script>
+
+		<link rel="stylesheet" href="./mastercss/master.css">
+		<link rel="stylesheet" href="./css/reveal-progress-bar.css">
+	</body>
+</html>

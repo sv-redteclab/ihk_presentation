@@ -1,0 +1,16 @@
+node_modules
+js
+css
+lib
+plugin
+test
+LICENSE
+*.*
+
+!mastercss/*
+!masterjs/*
+!README.md
+!init.sh
+!remove_untracked.sh
+!.gitignore
+!index.html

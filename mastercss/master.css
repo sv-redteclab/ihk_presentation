@@ -1,0 +1,90 @@
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  padding: 0;
+}
+
+.reveal .slide-number {
+  font-size: 0.5em;
+  width: calc(100% - 16px);
+  color: #222;
+  background: none;
+  padding: 0;
+}
+
+.reveal .slide-number span::before {
+  content: "Sven Vaupel - RedTecLab GmbH - 18168";
+}
+
+.reveal .slide-number span {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reveal .slides section {
+  height: 93%;
+}
+
+.reveal .slides .layout-center,
+.reveal .slides .reveal-agenda {
+  height: 93%;
+  display: flex !important;
+  flex-flow: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.reveal .slides .layout-columns .layout-columns-wrapper {
+  display: grid !important;
+  grid-template-columns: auto;
+}
+
+.reveal .slides .layout-columns .layout-columns-wrapper > * {
+  grid-row: 1;
+}
+
+.reveal .slides .layout-two-column {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.reveal .slides .layout-two-column .column-left {
+  grid-column: 1 / span 1;
+}
+
+.reveal .slides .layout-two-column .column-rigt {
+  grid-column: 2 / span 1;
+}
+
+.progress-bar-entry-active {
+  text-decoration: underline;
+}
+
+.reveal .slides section .fragment.always-visible {
+  opacity: 1;
+  visibility: inherit;
+}
+#svg1 .aa.visible {
+  stroke: black;
+  fill: red !important;
+  animation-name: aa;
+  animation-duration: 1s;
+  transform: translate(200px, 0);
+}
+
+@keyframes aa {
+  from {
+    fill: lime;
+    transform: translate(0, 0);
+  }
+
+  to {
+    fill: red;
+    transform: translate(200px, 0);
+  }
+}
