@@ -15,7 +15,26 @@
 }
 
 .reveal .slide-number span::before {
-  content: "Sven Vaupel - RedTecLab GmbH - 18168";
+  content: 'Sven Vaupel - RedTecLab GmbH - 18168';
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  text-transform: none;
+}
+
+.reveal h1 span,
+.reveal h2 span,
+.reveal h3 span,
+.reveal h4 span,
+.reveal h5 span,
+.reveal h6 span {
+  text-transform: uppercase;
+  font-size: 0.8em;
 }
 
 .reveal .slide-number span {
@@ -26,6 +45,11 @@
 
 .reveal .slides section {
   height: 93%;
+}
+
+.reveal .slides .flex {
+  display: flex !important;
+  flex-flow: column;
 }
 
 .reveal .slides .layout-center,
