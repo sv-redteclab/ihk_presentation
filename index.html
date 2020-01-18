@@ -37,12 +37,58 @@
   </head>
   <body>
     <div class="reveal">
-      <div class="slides"></div>
+      <div class="slides">
+        <!-- <section class="layout-center" data-progress-bar-show="false">
+          <h1 class="progress-bar-no-entry">Notepad-Service</h1>
+          <h4 class="progress-bar-no-entry">ehem. Wishlist-Service</h4>
+        </section> -->
+
+        <!-- <section class="flex" data-progress-bar-show="1">
+          <h1 style="align-self: flex-start;">Die RTL</h1>
+          <div style="align-self: center;">
+            <include src="./img/company.svg" />
+          </div>
+        </section> -->
+
+        <section class="flex" data-progress-bar-show="1">
+          <h1 style="align-self: flex-start;">Der Merkzettel</h1>
+          <div style="align-self: stretch; height: 50vh;">
+            <include src="./img/notepad.svg" />
+          </div>
+        </section>
+      </div>
     </div>
 
     <script src="js/reveal.js"></script>
 
     <script>
+      // replace include tags
+      for (let e of document.getElementsByTagName('include')) {
+        let src = e.getAttribute('src')
+        fetch(src)
+          .then(r => r.text())
+          .then(html => (e.outerHTML = html))
+      }
+
+      // Insert spans for lowercase substrings into h tags
+      document.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach(e => {
+        const open = '<span>'
+        const close = '</span>'
+        let wasLower = false
+        let current = ''
+
+        for (let l of e.innerText)
+          if (/[a-z]/.test(l)) {
+            current += wasLower ? l : open + l
+            wasLower = true
+          } else {
+            current += wasLower ? close + l : l
+            wasLower = false
+          }
+
+        e.innerHTML = current
+      })
+
       // More info about config & dependencies:
       // - https://github.com/hakimel/reveal.js#configuration
       // - https://github.com/hakimel/reveal.js#dependencies
