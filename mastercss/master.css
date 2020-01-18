@@ -18,12 +18,17 @@
   content: 'Sven Vaupel - RedTecLab GmbH - 18168';
 }
 
+.reveal h1 {
+  font-size: 2em;
+}
+
 .reveal h1,
 .reveal h2,
 .reveal h3,
 .reveal h4,
 .reveal h5,
 .reveal h6 {
+  margin: 0;
   text-transform: none;
 }
 

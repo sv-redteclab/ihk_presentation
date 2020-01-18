@@ -14,6 +14,19 @@
   animation-delay: 2s, 0s;
 }
 
+#new_architecture #deployment.visible {
+  animation-name: deployment;
+  animation-duration: 2s;
+}
+
+@keyframes deployment {
+  from {
+    transform: rotate(90deg) translate(0px, 100px);
+  }
+  to {
+  }
+}
+
 @keyframes notepad-icon {
   from {
     stroke: black;
