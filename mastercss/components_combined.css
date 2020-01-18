@@ -1,0 +1,80 @@
+#components_combined .turn-green.visible.current-fragment :not(path) {
+  fill: #99ff99;
+  animation-name: turn-green;
+  animation-duration: 1s;
+}
+
+#components_combined .turn-green.visible :not(path) {
+  fill: #ffffff;
+  animation-name: turn-white;
+  animation-duration: 1s;
+}
+
+#components_combined .monolith-interfaces-f2.turn-red.visible ellipse,
+#components_combined .turn-red.visible :not(path) {
+  fill: #ff6666;
+  color: #ffffff !important;
+  animation-name: turn-red;
+  animation-duration: 2s;
+}
+
+#components_combined .turn-orange.visible :not(path) {
+  fill: #ff8000;
+  color: #ffffff !important;
+  animation-name: turn-orange;
+  animation-duration: 2s;
+}
+
+#components_combined #notepad *,
+#components_combined #notepad-interface ellipse,
+#components_combined #notepad-api :not(path) {
+  fill: #6666ff;
+  color: #ffffff !important;
+}
+
+#components_combined #kundenkonto :not(path),
+#components_combined #frontend-service-api ellipse,
+#components_combined #frontend-api :not(path) {
+  fill: #ff8000;
+  color: #ffffff !important;
+}
+
+@keyframes turn-orange {
+  from {
+    fill: #ffffff;
+    color: #000000 !important;
+  }
+  to {
+    color: #ffffff !important;
+    fill: #ff8000;
+  }
+}
+
+@keyframes turn-red {
+  from {
+    fill: #ffffff;
+    color: #000000 !important;
+  }
+  to {
+    fill: #ff6666;
+    color: #ffffff !important;
+  }
+}
+
+@keyframes turn-green {
+  from {
+    fill: #ffffff;
+  }
+  to {
+    fill: #99ff99;
+  }
+}
+
+@keyframes turn-white {
+  from {
+    fill: #99ff99;
+  }
+  to {
+    fill: #ffffff;
+  }
+}

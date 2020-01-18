@@ -98,22 +98,37 @@
   text-align: center;
 }
 
-#svg1 .aa.visible {
-  stroke: black;
-  fill: red !important;
-  animation-name: aa;
-  animation-duration: 1s;
-  transform: translate(200px, 0);
+.reveal .slides section .fragment.smooth-fade-out {
+  opacity: 1;
+  visibility: visible;
 }
 
-@keyframes aa {
-  from {
-    fill: lime;
-    transform: translate(0, 0);
-  }
+.reveal .slides section .fragment.smooth-fade-out.visible {
+  opacity: 0;
+  animation-name: smooth-fade-out;
+  animation-duration: 1s;
+}
 
+@keyframes smooth-fade-out {
+  from {
+    opacity: 1;
+  }
   to {
-    fill: red;
-    transform: translate(200px, 0);
+    opacity: 0;
+  }
+}
+
+.reveal .slides section .fragment.smooth-fade-in.visible {
+  opacity: 1;
+  animation-name: smooth-fade-in;
+  animation-duration: 2s;
+}
+
+@keyframes smooth-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

@@ -1,0 +1,55 @@
+#new_architecture #notepad.visible #notepad-icon {
+  animation-name: notepad-icon;
+  animation-duration: 3s;
+}
+
+#new_architecture #notepad.visible #notepad-hexagon {
+  animation-name: notepad-hexagon;
+  animation-duration: 3s;
+}
+
+#new_architecture #notepad.visible .rest {
+  animation-name: notepad-rest-blend, notepad-rest-invisible;
+  animation-duration: 1s, 2s;
+  animation-delay: 2s, 0s;
+}
+
+@keyframes notepad-icon {
+  from {
+    stroke: black;
+    stroke-width: 5px;
+    transform: matrix(0.13623471, 0, 0, 0.11795591, 297.9585, 293.36988)
+      translate(1500px, -100px);
+  }
+  to {
+    transform: matrix(0.13623471, 0, 0, 0.11795591, 297.9585, 293.36988)
+      translate(0, 0);
+  }
+}
+
+@keyframes notepad-hexagon {
+  from {
+    opacity: 0;
+    transform: translate(200px, -10px);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes notepad-rest-blend {
+  from {
+    opacity: 0;
+  }
+  to {
+  }
+}
+
+@keyframes notepad-rest-invisible {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}
