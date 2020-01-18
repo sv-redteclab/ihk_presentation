@@ -9,6 +9,7 @@ LICENSE
 
 !mastercss/*
 !masterjs/*
+!img/*
 !README.md
 !init.sh
 !remove_untracked.sh

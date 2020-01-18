@@ -1,0 +1,23 @@
+<svg width="700px" height="480px" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <image id="rtl" x="500" y="11" width="200" href="img/logo-rtl.svg"/>
+  <image id="sae" class="fragment" x="0" y="0" width="200" href="img/sae-logo.png"/>
+
+  <g id="link" class="fragment" transform="translate(0)">
+    <path d="M 220 50 l 105 0" stroke="black" stroke-width="5"/>
+    <path d="M 375 50 l 110 0" stroke="black" stroke-width="5"/>
+    <path d="M 210 50 l 30 10 l 0 -20" fill="black"/>
+    <g transform="translate(350,50)">
+      <ellipse cx="0" cy="0" rx="25" stroke="black" stroke-width="5" fill="none"/>
+      <image x="-15" y="-15" width="30"  href="img/chain.svg"/>
+    </g>
+  </g>
+  <path class="fragment" stroke="black" stroke-width="2" transform="translate(110,120) scale(2)" fill="none" d="M 0 0 a 10 10 90 0 0 10 10 l 100 0 l 10 10 l 10 -10 l 100 0 a 10 10 90 0 0 10 -10"/>
+  <g class="fragment" id="screen" transform="translate(100,180)">
+    <g>
+      <clipPath id="hexagonal-mask">
+        <rect x="0" y="0" width="500" height="300" rx="20" stroke="red"/>
+      </clipPath>
+    </g>
+    <image clip-path="url(#hexagonal-mask)" x="0" y="0" width="500" href="img/screen.png"/>
+  </g>
+</svg>
