@@ -73,10 +73,6 @@
   grid-template-columns: auto;
 }
 
-.reveal .slides .layout-columns .layout-columns-wrapper > * {
-  grid-row: 1;
-}
-
 .reveal .slides .layout-two-column {
   display: grid;
   grid-template-columns: 50% 50%;

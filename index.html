@@ -38,10 +38,14 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <!-- <section class="layout-center" data-progress-bar-show="false">
+        <section class="layout-center" data-progress-bar-show="false">
           <h1 class="progress-bar-no-entry">Notepad-Service</h1>
           <h4 class="progress-bar-no-entry">ehem. Wishlist-Service</h4>
-        </section> -->
+        </section>
+
+        <section class="layout-center" data-progress-bar-show="false">
+          <h1 class="progress-bar-no-entry">AGENDA</h1>
+        </section>
 
         <section class="flex" data-progress-bar-show="1">
           <h1 style="align-self: flex-start;">Die RTL</h1>
@@ -51,27 +55,135 @@
         </section>
 
         <section class="flex" data-progress-bar-show="1">
-          <h1 style="align-self: flex-start;">Der Merkzettel</h1>
+          <h1 style="align-self: flex-start;">Merkzettel</h1>
           <div style="align-self: stretch; height: 55vh;">
             <include src="./img/notepad.svg"></include>
           </div>
         </section>
 
         <section class="flex" data-progress-bar-show="1">
-          <h1 style="align-self: flex-start;">Der Merkzettel</h1>
-          <div style="align-self: stretch; height:60vh;">
+          <h1 style="align-self: flex-start;">Systemumgebung</h1>
+          <div style="align-self: stretch; height:59vh;">
             <include src="./mastercss/new_architecture.css"></include>
             <include src="./img/new_architecture.svg"></include>
           </div>
         </section>
 
         <section class="flex" data-progress-bar-show="1">
-          <h1 style="align-self: flex-start;">Der Merkzettel</h1>
-          <div style="align-self: stretch; height: 60vh;">
+          <h1 style="align-self: flex-start;">Systemkomponenten</h1>
+          <div style="align-self: stretch; height: 59vh;">
             <include src="./mastercss/components_combined.css"></include>
             <include src="./img/components_combined.svg"></include>
           </div>
         </section>
+
+        <section id="s7-1" class="layout-columns" data-progress-bar-show="1">
+          <h1>Projektimpulse</h1>
+          <style>
+            #s7-1 h1 {
+              margin-bottom: 2%;
+            }
+            #s7-1 h4 {
+              grid-row: 1;
+              margin-bottom: 5%;
+              text-align: center;
+            }
+            #s7-1 ul {
+              grid-row: 2;
+              margin-left: 2%;
+              padding: 0 !important;
+              list-style-type: none;
+            }
+            #s7-1 li {
+              margin: 0 !important;
+              padding-left: 0.5em;
+            }
+            #s7-1 li:before {
+              content: '•';
+              float: left;
+              margin-left: -0.5em;
+            }
+            #s7-1 ul ul {
+              margin-left: -2%;
+            }
+            #s7-1 > div {
+              grid-template-columns: 33.33% 33.33% 33.33%;
+              height: 59vh;
+              grid-auto-rows: min-content 1fr;
+            }
+          </style>
+          <div class="layout-columns-wrapper">
+            <h4 class="fragment">Dokumente</h4>
+            <ul>
+              <li class="fragment">Antrag</li>
+              <li class="fragment">
+                IHK
+                <ul>
+                  <li>PH + LH</li>
+                  <li>QM-Plan</li>
+                  <li>
+                    Strukturplan <br />
+                    ...
+                  </li>
+                </ul>
+              </li>
+              <li class="fragment">Bericht</li>
+            </ul>
+
+            <h4 class="fragment" style="grid-column: 3;">Koopertation</h4>
+            <ul style="grid-column: 3;">
+              <li class="fragment">Agilität</li>
+              <li class="fragment">Funktions-übergreifend</li>
+              <li class="fragment">Kommunikation</li>
+            </ul>
+
+            <h4 class="fragment" style="grid-column: 2;">Qualität</h4>
+            <ul class="fragment" style="grid-column: 2;">
+              <li>Reviews</li>
+              <li class="fragment">Testing</li>
+              <li class="fragment">Automation</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="s7-1" class="flex" data-progress-bar-show="1">
+          <h1 style="align-self: flex-start;">Projektimpulse</h1>
+        </section>
+
+        <section class="flex" data-progress-bar-show="1">
+          <h1 style="align-self: flex-start;">Planung</h1>
+          <div style="align-self: stretch; height: 59vh;">
+            <include src="./mastercss/strukturplan_gesamt.css"></include>
+            <include src="./img/strukturplan_gesamt.svg"></include>
+          </div>
+        </section>
+
+        <section class="flex" data-progress-bar-show="1">
+          <h1 style="align-self: flex-start;">Planung</h1>
+          <div style="align-self: stretch; height: 59vh;">
+            <include src="./mastercss/swagger_snippet.css"></include>
+            <include src="./img/swagger_snippet.html"></include>
+          </div>
+        </section>
+
+        <section class="flex" data-progress-bar-show="1">
+          <h1 style="align-self: flex-start;">Planung</h1>
+          <div style="align-self: stretch; height: 59vh;">
+            <include src="./mastercss/deployment_h.css"></include>
+            <include src="./img/deployment_h.svg"></include>
+          </div>
+        </section>
+
+        <script>
+          document
+            .querySelectorAll('.slides section:not(:nth-last-child(2))')
+            .forEach(e => (e.outerHTML = ''))
+          window.setTimeout(_ => {
+            for (let i = 0; i < 20; i++) {
+              Reveal.nextFragment()
+            }
+          }, 1000)
+        </script>
       </div>
     </div>
 
@@ -96,7 +208,7 @@
         let current = ''
 
         for (let l of e.innerText)
-          if (/[a-z]/.test(l)) {
+          if (/[a-zäüö]/.test(l)) {
             current += wasLower ? l : open + l
             wasLower = true
           } else {
