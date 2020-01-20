@@ -158,8 +158,76 @@
           </div>
         </section>
 
-        <section class="flex" data-progress-bar-show="1">
-          <h1 style="align-self: flex-start;">Planung</h1>
+        <section id="s11" class="flex" data-progress-bar-show="1">
+          <style>
+            #s11 #OpenAPI {
+              display: grid;
+              grid-template-columns: auto 1fr;
+              grid-auto-flow: column;
+              grid-gap: 0.5em;
+            }
+            /* #s11 #OpenAPI.visible:not(.current-fragment) {
+              display: none;
+            } */
+            #s11 #OpenAPI.visible,
+            #s11 .no-display.visible {
+              animation: noDisplay 1s;
+              height: 0;
+              opacity: 0;
+              padding: 0;
+            }
+            @keyframes noDisplay {
+              from {
+                opacity: 1;
+                height: 100%;
+              }
+              to {
+                opacity: 0;
+                height: 0;
+                padding: 0;
+              }
+            }
+          </style>
+          <script>
+            window.setTimeout(_ => {
+              const scrollIfId = (id, value) => {
+                if (event.fragment.id === id) {
+                  document.getElementById('DIV_1').scrollBy({
+                    top: value,
+                    left: 0,
+                    behavior: 'smooth'
+                  })
+                }
+              }
+              const handle = sign => event => {
+                scrollIfId('DIV_48', sign * (50 + 293))
+                scrollIfId('DIV_76', sign * (50 + 141 + 40))
+                scrollIfId('TR_150', sign * (50 + 20 + 40 + 319))
+                if (
+                  event.fragments[1] &&
+                  event.fragments[1].id === 'DIV_240' &&
+                  sign === -1
+                ) {
+                  document.getElementById('DIV_1').scrollTo(0, 0)
+                }
+              }
+              Reveal.addEventListener('fragmentshown', handle(1))
+              Reveal.addEventListener('fragmenthidden', handle(-1))
+            }, 1000)
+          </script>
+          <h1 style="align-self: flex-start;">Schnittstelle</h1>
+          <div
+            id="OpenAPI"
+            class="fragment always-visible"
+            data-fragment-index="2"
+          >
+            <div class="fragment" data-fragment-index="1">OpenAPI</div>
+            <ul class="fragment" data-fragment-index="1">
+              <li>Standard</li>
+              <li>JSON/YML Format &rArr; Maschinenlesbar</li>
+              <li>Objektbeschreibung als JSON-Schema</li>
+            </ul>
+          </div>
           <div style="align-self: stretch; height: 59vh;">
             <include src="./mastercss/swagger_snippet.css"></include>
             <include src="./img/swagger_snippet.html"></include>
