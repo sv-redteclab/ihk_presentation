@@ -24,51 +24,61 @@
     <link rel="stylesheet" href="lib/css/zenburn.css" />
     <script>
       const agenda = [
-        { id: '1', title: 'Einleitung' },
-        { id: '2', title: 'System' },
-        { id: '3', title: 'Projekt' },
-        { id: '4', title: 'Entwurf' },
-        // { id: '5', title: 'Komponenten' },
-        { id: '6', title: 'Bereitstellung' },
-        { id: '7', title: 'Resume' }
+        { id: 'einleitung', title: 'Einleitung' },
+        { id: 'system', title: 'System' },
+        { id: 'projekt', title: 'Projekt' },
+        { id: 'entwurf', title: 'Entwurf' },
+        // { id: 'komponenten', title: 'Komponenten' },
+        { id: 'bereitstellung', title: 'Bereitstellung' },
+        { id: 'resume', title: 'Resume' }
       ]
     </script>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
-        <section class="layout-center" data-progress-bar-show="false">
+        <section id="s1" class="layout-center" data-progress-bar-show="false">
           <h1 class="progress-bar-no-entry">Notepad-Service</h1>
           <h4 class="progress-bar-no-entry">ehem. Wishlist-Service</h4>
         </section>
 
-        <section class="layout-center" data-progress-bar-show="false">
+        <section id="s2" class="layout-center" data-progress-bar-show="false">
           <h1 class="progress-bar-no-entry">AGENDA</h1>
+          <ul style="list-style-type: none;">
+            <li>Einleitung</li>
+            <li>System</li>
+            <li>Projekt</li>
+            <li>Entwurf</li>
+            <!-- <li> Komponenten </li> -->
+            <li>Bereitstellung</li>
+            <li>Resume</li>
+          </ul>
         </section>
 
-        <section class="flex" data-progress-bar-show="1">
+        <section id="s3" class="flex" data-progress-bar-id="einleitung">
           <h1 style="align-self: flex-start;">Die RTL</h1>
           <div style="align-self: stretch;  height:59vh;">
             <include src="./img/company.svg"></include>
           </div>
         </section>
 
-        <section class="flex" data-progress-bar-show="1">
+        <section id="s4" class="flex" data-progress-bar-id="einleitung">
           <h1 style="align-self: flex-start;">Merkzettel</h1>
           <div style="align-self: stretch; height: 55vh;">
             <include src="./img/notepad.svg"></include>
           </div>
         </section>
 
-        <section class="flex" data-progress-bar-show="1">
+        <section id="s5" class="flex" data-progress-bar-id="system">
           <h1 style="align-self: flex-start;">Systemumgebung</h1>
+          <!-- TODO SVG viewbox -->
           <div style="align-self: stretch; height:59vh;">
             <include src="./mastercss/new_architecture.css"></include>
             <include src="./img/new_architecture.svg"></include>
           </div>
         </section>
 
-        <section class="flex" data-progress-bar-show="1">
+        <section id="s6" class="flex" data-progress-bar-id="system">
           <h1 style="align-self: flex-start;">Systemkomponenten</h1>
           <div style="align-self: stretch; height: 59vh;">
             <include src="./mastercss/components_combined.css"></include>
@@ -76,7 +86,11 @@
           </div>
         </section>
 
-        <section id="s7-1" class="layout-columns" data-progress-bar-show="1">
+        <section
+          id="s7-1"
+          class="layout-columns"
+          data-progress-bar-id="projekt"
+        >
           <h1>Projektimpulse</h1>
           <style>
             #s7-1 h1 {
@@ -145,11 +159,11 @@
           </div>
         </section>
 
-        <section id="s7-1" class="flex" data-progress-bar-show="1">
+        <!-- <section id="s7-2" class="flex" data-progress-bar-id="1">
           <h1 style="align-self: flex-start;">Projektimpulse</h1>
-        </section>
+        </section> -->
 
-        <section class="flex" data-progress-bar-show="1">
+        <section id="s9" class="flex" data-progress-bar-id="projekt">
           <h1 style="align-self: flex-start;">Planung</h1>
           <div style="align-self: stretch; height: 59vh;">
             <include src="./mastercss/strukturplan_gesamt.css"></include>
@@ -157,7 +171,7 @@
           </div>
         </section>
 
-        <section id="s11" class="flex" data-progress-bar-show="1">
+        <section id="s11" class="flex" data-progress-bar-id="entwurf">
           <style>
             #s11 #OpenAPI {
               display: grid;
@@ -233,7 +247,7 @@
           </div>
         </section>
 
-        <section id="s12" class="flex" data-progress-bar-show="1">
+        <section id="s12" class="flex" data-progress-bar-id="entwurf">
           <h1 style="align-self: flex-start;">Komponenten</h1>
           <ul style="margin-bottom: 0.5em;">
             <li>
@@ -255,7 +269,7 @@
           </div>
         </section>
 
-        <section id="s13" class="flex" data-progress-bar-show="1">
+        <section id="s13" class="flex" data-progress-bar-id="entwurf">
           <h1 style="align-self: flex-start;">Kontrollfluss</h1>
           <div style="align-self: stretch; height: 59vh;">
             <include src="./mastercss/service_request.css"></include>
@@ -263,17 +277,47 @@
           </div>
         </section>
 
-        <section id="s14" class="flex" data-progress-bar-show="1">
-          <h1 style="align-self: flex-start;">Planung</h1>
+        <section id="s14" class="flex" data-progress-bar-id="bereitstellung">
+          <h1 style="align-self: flex-start;">Bereitstellung</h1>
           <div style="align-self: stretch; height: 59vh;">
             <include src="./mastercss/deployment_h.css"></include>
             <include src="./img/deployment_h.svg"></include>
           </div>
         </section>
 
+        <section id="s15" class="flex" data-progress-bar-id="resume">
+          <h1 style="align-self: flex-start; margin-bottom: 1em;">Resume</h1>
+          <div
+            style="
+            align-self: center;
+            display: grid;
+            grid-template-rows: 1fr 1fr 1em 1fr 1fr;
+            grid-template-columns: auto 1fr;
+            grid-column-gap: 1em;
+          "
+          >
+            <div style="justify-self: end; font-weight: bold;">
+              &CircleMinus;
+            </div>
+            <div>Dokumente</div>
+            <div style="justify-self: end; font-weight: bold;">
+              &CirclePlus;
+            </div>
+            <div>Volle Projektbegleitung</div>
+
+            <div></div>
+            <div></div>
+
+            <div style="justify-self: end; font-weight: bold;">Lessons:</div>
+            <div>Kiss + MVP</div>
+            <div style="justify-self: end; font-weight: bold;">Hopes:</div>
+            <div>Feegback für andere Azubis</div>
+          </div>
+        </section>
+
         <script>
           document
-            .querySelectorAll('.slides section:not(:nth-last-child(3))')
+            .querySelectorAll('.slides section:not(:nth-last-child(2))')
             .forEach(e => (e.outerHTML = ''))
           window.setTimeout(_ => {
             for (let i = 0; i < 20; i++) {
