@@ -65,6 +65,7 @@
         <section id="s4" class="flex" data-progress-bar-id="einleitung">
           <h1 style="align-self: flex-start;">Merkzettel</h1>
           <div style="align-self: stretch; height: 55vh;">
+            <include src="./mastercss/notepad.css"></include>
             <include src="./img/notepad.svg"></include>
           </div>
         </section>
@@ -97,13 +98,11 @@
               margin-bottom: 2%;
             }
             #s7-1 h4 {
-              grid-row: 1;
               margin-bottom: 5%;
-              text-align: center;
+              text-align: left;
             }
             #s7-1 ul {
-              grid-row: 2;
-              margin-left: 2%;
+              margin-left: 0;
               padding: 0 !important;
               list-style-type: none;
             }
@@ -120,42 +119,78 @@
               margin-left: -2%;
             }
             #s7-1 > div {
-              grid-template-columns: 33.33% 33.33% 33.33%;
               height: 59vh;
-              grid-auto-rows: min-content 1fr;
+            }
+            #s7-1 .quality {
+              overflow: hidden;
+              word-wrap: normal;
+            }
+            #s7-1 .quality:not(.visible) {
+              width: 0%;
+            }
+            #s7-1 .quality.visible {
+              animation: ewidth 1s;
+            }
+            @keyframes ewidth {
+              from {
+                width: 0%;
+              }
+              to {
+                width: 33.33%;
+              }
+            }
+            #s7-1 .headings,
+            #s7-1 .lists {
+              display: flex;
+              justify-content: space-around;
+            }
+            #s7-1 .headings > *,
+            #s7-1 .lists > * {
+              width: 33.33%;
             }
           </style>
-          <div class="layout-columns-wrapper">
-            <h4 class="fragment">Dokumente</h4>
-            <ul>
-              <li class="fragment">Antrag</li>
-              <li class="fragment">
-                IHK
-                <ul>
-                  <li>PH + LH</li>
-                  <li>QM-Plan</li>
-                  <li>
-                    Strukturplan <br />
-                    ...
-                  </li>
-                </ul>
-              </li>
-              <li class="fragment">Bericht</li>
-            </ul>
+          <div data-fragment-index="12">
+            <div class="headings">
+              <h4 class="fragment" data-fragment-index="2">Dokumente</h4>
+              <h4 class="quality fragment" data-fragment-index="12">
+                Qualität
+              </h4>
+              <h4 class="fragment" data-fragment-index="6">
+                Koopertation
+              </h4>
+            </div>
+            <div class="lists">
+              <ul>
+                <li class="fragment" data-fragment-index="3">Antrag</li>
+                <li class="fragment" data-fragment-index="4">
+                  IHK
+                  <ul>
+                    <li>PH + LH</li>
+                    <li>QM-Plan</li>
+                    <li>
+                      Strukturplan <br />
+                      ...
+                    </li>
+                  </ul>
+                </li>
+                <li class="fragment" data-fragment-index="5">Bericht</li>
+              </ul>
 
-            <h4 class="fragment" style="grid-column: 3;">Koopertation</h4>
-            <ul style="grid-column: 3;">
-              <li class="fragment">Agilität</li>
-              <li class="fragment">Funktions-übergreifend</li>
-              <li class="fragment">Kommunikation</li>
-            </ul>
-
-            <h4 class="fragment" style="grid-column: 2;">Qualität</h4>
-            <ul class="fragment" style="grid-column: 2;">
-              <li>Reviews</li>
-              <li class="fragment">Testing</li>
-              <li class="fragment">Automation</li>
-            </ul>
+              <ul class="quality fragment" data-fragment-index="12">
+                <li class="fragment" data-fragment-index="13">
+                  Reviews
+                </li>
+                <li class="fragment" data-fragment-index="14">Testing</li>
+                <li class="fragment" data-fragment-index="15">Automation</li>
+              </ul>
+              <ul class="fragment" data-fragment-index="7">
+                <li>Agilität</li>
+                <li class="fragment" data-fragment-index="9">
+                  Funktions-übergreifend
+                </li>
+                <li class="fragment" data-fragment-index="10">Kommunikation</li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -296,32 +331,56 @@
             grid-column-gap: 1em;
           "
           >
-            <div style="justify-self: end; font-weight: bold;">
+            <div
+              class="fragment"
+              data-fragment-index="1"
+              style="justify-self: end; font-weight: bold; color: #f00000;"
+            >
               &CircleMinus;
             </div>
-            <div>Dokumente</div>
-            <div style="justify-self: end; font-weight: bold;">
+            <div class="fragment" data-fragment-index="1">Dokumente</div>
+            <div
+              class="fragment"
+              data-fragment-index="2"
+              style="justify-self: end; font-weight: bold; color: green;"
+            >
               &CirclePlus;
             </div>
-            <div>Volle Projektbegleitung</div>
+            <div class="fragment" data-fragment-index="2">
+              Volle Projektbegleitung
+            </div>
 
             <div></div>
             <div></div>
 
-            <div style="justify-self: end; font-weight: bold;">Lessons:</div>
-            <div>Kiss + MVP</div>
-            <div style="justify-self: end; font-weight: bold;">Hopes:</div>
-            <div>Feegback für andere Azubis</div>
+            <div
+              class="fragment"
+              data-fragment-index="3"
+              style="justify-self: end; font-weight: bold;"
+            >
+              Lessons:
+            </div>
+            <div class="fragment" data-fragment-index="3">Kiss + MVP</div>
+            <div
+              class="fragment"
+              data-fragment-index="4"
+              style="justify-self: end; font-weight: bold;"
+            >
+              Hopes:
+            </div>
+            <div class="fragment" data-fragment-index="4">
+              Feegback für andere Azubis
+            </div>
           </div>
         </section>
 
         <script>
           document
-            .querySelectorAll('.slides section:not(:nth-last-child(2))')
+            .querySelectorAll('.slides section:not(#s7-1)')
             .forEach(e => (e.outerHTML = ''))
           window.setTimeout(_ => {
             for (let i = 0; i < 20; i++) {
-              // Reveal.nextFragment();
+              // Reveal.nextFragment()
             }
           }, 1000)
         </script>

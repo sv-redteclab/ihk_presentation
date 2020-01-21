@@ -1,0 +1,70 @@
+#notepadsvg #arrow.visible {
+  animation-name: arrowExpand;
+  animation-duration: 1s;
+}
+
+@keyframes arrowExpand {
+  from {
+    transform: scale(0, 1);
+    transform-origin: 401px 151px;
+  }
+  to {
+    transform: scale(1, 1);
+    transform-origin: 401px 151px;
+  }
+}
+
+#notepadsvg #notepads.visible {
+  animation-name: smooth-fade-in, waiting;
+  animation-duration: 1s, 1s;
+  animation-delay: 1s, 0s;
+}
+
+@keyframes waiting {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+#notepadsvg #trash1.visible {
+  animation-name: smooth-fade-in, shift-down;
+  animation-duration: 1s, 1s;
+}
+
+#notepadsvg #eye1.visible {
+  animation-name: smooth-fade-in, shift-up;
+  animation-duration: 1s, 1s;
+}
+
+#notepadsvg #trash2.visible {
+  animation-name: smooth-fade-in, shift-down, waiting;
+  animation-duration: 1s, 1s, 1s;
+  animation-delay: 1s, 1s, 0s;
+}
+
+#notepadsvg #eye2.visible {
+  animation-name: smooth-fade-in, shift-up, waiting;
+  animation-duration: 1s, 1s, 1s;
+  animation-delay: 1s, 1s, 0s;
+}
+
+@keyframes shift-up {
+  from {
+    transform: translate(0, -20px);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes shift-down {
+  from {
+    transform: translate(0px, 20px);
+  }
+  to {
+    transform: translate(0px, 0px);
+  }
+}
