@@ -1,2 +1,17 @@
-#EMPTY {
+#planung-borders > * > *,
+#planung-init > *,
+#planung-planung > *,
+#planung-entwurf > *,
+#planung-impl > *,
+#planung-abschluss > * {
+  opacity: 0;
+}
+
+#planung-borders > * > *.visible,
+#planung-init > *.visible,
+#planung-planung > *.visible,
+#planung-entwurf > *.visible,
+#planung-impl > *.visible,
+#planung-abschluss > *.visible {
+  opacity: 1;
 }

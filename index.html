@@ -200,6 +200,121 @@
 
         <section id="s9" class="flex" data-progress-bar-id="projekt">
           <h1 style="align-self: flex-start;">Planung</h1>
+          <script>
+            window.setTimeout(_ => {
+              const isRight = id =>
+                [
+                  'planung-borders',
+                  'planung-init',
+                  'planung-planung',
+                  'planung-entwurf',
+                  'planung-impl',
+                  'planung-abschluss'
+                ].includes(id)
+              const handleShow = event => {
+                const fragment = event.fragment
+                if (!isRight(fragment.id)) return
+                if (fragment.id === 'planung-borders') {
+                  Array.from(fragment.children)
+                    .map(e => Array.from(e.children))
+                    .flat()
+                    .forEach((e, idx) => {
+                      e.classList.toggle('visible')
+                      let bb = e.getBBox()
+                      let a = bb.x
+                      let b = bb.y
+                      e.animate(
+                        [
+                          {
+                            opacity: 0
+                          },
+                          {
+                            opacity: 0
+                          }
+                        ],
+                        {
+                          duration: 200 * idx
+                        }
+                      )
+                      e.animate(
+                        [
+                          {
+                            transform: `translate(0, -${b}px)`,
+                            opacity: 0
+                          },
+                          {
+                            transform: 'translate(0px, 0px)',
+                            opacity: 1
+                          }
+                        ],
+                        {
+                          duration: 1000,
+                          delay: 200 * idx
+                        }
+                      )
+                    })
+
+                  return
+                }
+                Array.from(fragment.children)
+                  .reverse()
+                  .forEach((e, idx) => {
+                    e.classList.toggle('visible')
+                    let bb = e.getBBox()
+                    let a = bb.x
+                    let b = bb.y
+                    e.animate(
+                      [
+                        {
+                          opacity: 0
+                        },
+                        {
+                          opacity: 0
+                        }
+                      ],
+                      {
+                        duration: 200 * idx
+                      }
+                    )
+                    e.animate(
+                      [
+                        {
+                          transform: `translate(-${a}px, 0)`,
+                          opacity: 0
+                        },
+                        {
+                          transform: 'translate(0px, 0px)',
+                          opacity: 1
+                        }
+                      ],
+                      {
+                        duration: 1000,
+                        delay: 200 * idx
+                      }
+                    )
+                  })
+              }
+
+              const handleHide = event => {
+                const fragment = event.fragment
+                if (!isRight(fragment.id)) return
+                if (fragment.id === 'planung-borders') {
+                  Array.from(fragment.children)
+                    .map(e => Array.from(e.children))
+                    .flat()
+                    .forEach((e, idx) => {
+                      e.classList.toggle('visible')
+                    })
+                  return
+                }
+                for (const e of fragment.children) {
+                  e.classList.toggle('visible')
+                }
+              }
+              Reveal.addEventListener('fragmentshown', handleShow)
+              Reveal.addEventListener('fragmenthidden', handleHide)
+            }, 1000)
+          </script>
           <div style="align-self: stretch; height: 59vh;">
             <include src="./mastercss/strukturplan_gesamt.css"></include>
             <include src="./img/strukturplan_gesamt.svg"></include>
@@ -376,7 +491,7 @@
 
         <script>
           document
-            .querySelectorAll('.slides section:not(#s7-1)')
+            .querySelectorAll('.slides section:not(#s9)')
             .forEach(e => (e.outerHTML = ''))
           window.setTimeout(_ => {
             for (let i = 0; i < 20; i++) {
