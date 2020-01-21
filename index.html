@@ -350,11 +350,30 @@
                 padding: 0;
               }
             }
+            #s11 ul > li {
+              opacity: 0;
+            }
+            #s11 ul > li.visible {
+              opacity: 1;
+              animation-name: smooth-fade-in, waiting;
+            }
+            #s11 ul > li:nth-child(1) {
+              animation-duration: 1s, 1s;
+              animation-delay: 1s, 0s;
+            }
+            #s11 ul > li:nth-child(2) {
+              animation-duration: 1s, 2s;
+              animation-delay: 2s, 0s;
+            }
+            #s11 ul > li:nth-child(3) {
+              animation-duration: 1s, 3s;
+              animation-delay: 3s, 0s;
+            }
           </style>
           <script>
             window.setTimeout(_ => {
-              const scrollIfId = (id, value) => {
-                if (event.fragment.id === id) {
+              const scrollIfId = (eId, id, value) => {
+                if (eId === id) {
                   document.getElementById('DIV_1').scrollBy({
                     top: value,
                     left: 0,
@@ -363,9 +382,13 @@
                 }
               }
               const handle = sign => event => {
-                scrollIfId('DIV_48', sign * (50 + 293))
-                scrollIfId('DIV_76', sign * (50 + 141 + 40))
-                scrollIfId('TR_150', sign * (50 + 20 + 40 + 319))
+                scrollIfId(event.fragment.id, 'DIV_48', sign * (50 + 293))
+                scrollIfId(event.fragment.id, 'DIV_76', sign * (50 + 141 + 40))
+                scrollIfId(
+                  event.fragment.id,
+                  'TR_150',
+                  sign * (50 + 20 + 40 + 319)
+                )
                 if (
                   event.fragments[1] &&
                   event.fragments[1].id === 'DIV_240' &&
@@ -386,9 +409,15 @@
           >
             <div class="fragment" data-fragment-index="1">OpenAPI</div>
             <ul class="fragment" data-fragment-index="1">
-              <li>Standard</li>
-              <li>JSON/YML Format &rArr; Maschinenlesbar</li>
-              <li>Objektbeschreibung als JSON-Schema</li>
+              <li class="fragment" data-fragment-index="1">
+                Standard
+              </li>
+              <li class="fragment" data-fragment-index="1">
+                JSON/YML For mat &rArr; Maschinenlesbar
+              </li>
+              <li class="fragment" data-fragment-index="1">
+                Objektbeschr eibung als JSON-Schema
+              </li>
             </ul>
           </div>
           <div style="align-self: stretch; height: 59vh;">
@@ -398,14 +427,83 @@
         </section>
 
         <section id="s12" class="flex" data-progress-bar-id="entwurf">
+          <script>
+            window.setTimeout(_ => {
+              const ids = [
+                'service-node',
+                'service-usedInterface',
+                'service-adapter',
+                'service-middleware',
+                'service-router',
+                'service-providedInterface',
+                's11-5',
+                's11-6',
+                's11-7'
+              ]
+              const isRight = id => ids.includes(id)
+
+              const transitions = [
+                'scale(1)',
+                'translate(500px, 0) scale(1.5)',
+                'translate(170px, 0) scale(1.5)',
+                'translate(-50px, 0) scale(1.5)',
+                'translate(-250px, 0) scale(1.5)',
+                'scale(1)'
+              ]
+              const toBlock = transform => ({ transform })
+              const svg = document.getElementById('service')
+              let idx = 0
+
+              handle = sign => event => {
+                if (!isRight(event.fragment.id)) return
+                svg.style.transform = transitions[idx + sign]
+                svg.animate(
+                  [toBlock(transitions[idx]), toBlock(transitions[idx + sign])],
+                  1000
+                )
+                idx += sign
+              }
+
+              Reveal.addEventListener('fragmentshown', handle(1))
+              Reveal.addEventListener('fragmenthidden', handle(-1))
+            }, 1000)
+          </script>
           <h1 style="align-self: flex-start;">Komponenten</h1>
-          <ul style="margin-bottom: 0.5em;">
-            <li>
+          <style>
+            #s12 ul li.visible span:nth-of-type(1) {
+              animation: smooth-fade-in, s12-slide-in, waiting;
+              animation-duration: 0.5s, 0.5s, 1s;
+              animation-delay: 1s, 1s, 0s;
+              display: inline-block;
+            }
+            #s12 ul li.visible span:nth-of-type(2) {
+              animation: smooth-fade-in, s12-slide-in, waiting;
+              animation-duration: 0.5s, 0.5s, 1.5s;
+              animation-delay: 1.5s, 1.5s, 0s;
+              display: inline-block;
+            }
+
+            @keyframes s12-slide-in {
+              from {
+                transform: translate(-50px, 0);
+              }
+              to {
+                transform: translate(0, 0);
+              }
+            }
+          </style>
+          <ul style="margin-bottom: 0.3em; font-size: 0.9em;">
+            <li id="s11-5" class="fragment" data-fragment-index="5">
+              Orientierung an Koa
+            </li>
+            <li id="s11-6" class="fragment" data-fragment-index="6">
               Koa Middleware als Eventhandle<br />
               <span>&rArr; Reichern HTTP context an</span> <br />
               <span>&rArr; Entscheiden über weitergabe</span>
             </li>
-            <li>Trennung von DB-Zugriff un -Verbindung</li>
+            <li id="s11-7" class="fragment" data-fragment-index="7">
+              Trennung von DB-Zugriff un -Verbindung
+            </li>
           </ul>
           <div
             style="
@@ -415,7 +513,7 @@
           "
           >
             <include src="./mastercss/service_komponenten.css"></include>
-            <include src="./img/service_komponenten.svg"></include>
+            <include src="./img/f.svg"></include>
           </div>
         </section>
 
@@ -491,7 +589,7 @@
 
         <script>
           document
-            .querySelectorAll('.slides section:not(#s9)')
+            .querySelectorAll('.slides section:not(#s12)')
             .forEach(e => (e.outerHTML = ''))
           window.setTimeout(_ => {
             for (let i = 0; i < 20; i++) {

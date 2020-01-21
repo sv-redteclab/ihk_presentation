@@ -133,3 +133,12 @@
     opacity: 1;
   }
 }
+
+@keyframes waiting {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}

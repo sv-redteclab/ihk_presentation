@@ -1,2 +1,118 @@
-#EMPTY {
+#service .text:not(#Middleware) {
+  transform: translate(0, 14px);
+}
+
+#service #service-node.visible ~ #service-usedInterface > #service-Vector_3 {
+  animation: service-Vector_3 0.8s;
+  transform: scale(2, 1);
+  transform-origin: 1333.5px 200.5px;
+}
+
+#service #service-node.visible ~ #service-usedInterface > #service-Vector_4 {
+  animation: service-Vector_4 0.8s;
+  transform: translate(20px, 0);
+}
+
+@keyframes service-Vector_3 {
+  from {
+    transform: scale(1, 1);
+    transform-origin: 1333.5px 200.5px;
+  }
+  to {
+    transform: scale(2, 1);
+    transform-origin: 1333.5px 200.5px;
+  }
+}
+
+@keyframes service-Vector_4 {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(20px, 0);
+  }
+}
+
+#service
+  #service-node.visible
+  ~ #service-providedInterface
+  > #service-Vector_47 {
+  animation: service-Vector_47 0.8s;
+  transform: scale(2, 1);
+  transform-origin: 63.5px 200.5px;
+}
+
+#service
+  #service-node.visible
+  ~ #service-providedInterface
+  > #service-Vector_48 {
+  animation: service-Vector_48 0.8s;
+  transform: translate(-20px, 0);
+}
+
+@keyframes service-Vector_47 {
+  from {
+    transform: scale(1, 1);
+    transform-origin: 63.5px 200.5px;
+  }
+  to {
+    transform: scale(2, 1);
+    transform-origin: 63.5px 200.5px;
+  }
+}
+
+@keyframes service-Vector_48 {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-20px, 0);
+  }
+}
+
+#service #service-providedInterface.visible,
+#service #service-router.visible {
+  animation: smooth-fade-in 0.8s;
+}
+
+#service #service-middleware.visible,
+#service #service-adapter.visible,
+#service #service-connector.visible,
+#service #service-usedInterface.visible {
+  animation: smooth-fade-in, service-slide-left;
+  animation-duration: 0.8s, 0.8s;
+}
+
+#service #service-middleware.visible > #service-validation,
+#service #service-middleware.visible > #service-auth,
+#service #service-middleware.visible > #service-error {
+  animation: service-slide-right, smooth-fade-in, waiting;
+  animation-duration: 0.5s, 0.5s, 0.5s;
+  animation-delay: 0.5s, 0.5s, 0s;
+}
+
+#service #service-middleware.visible > #service-info,
+#service #service-middleware.visible > #service-entries,
+#service #service-middleware.visible > #service-notepads {
+  animation: service-slide-right, smooth-fade-in, waiting;
+  animation-duration: 0.5s, 0.5s, 0.5s;
+  animation-delay: 0.5s, 0.5s, 0s;
+}
+
+@keyframes service-slide-right {
+  from {
+    transform: translate(-20px, 0);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes service-slide-left {
+  from {
+    transform: translate(20px, 0);
+  }
+  to {
+    transform: translate(0, 0);
+  }
 }

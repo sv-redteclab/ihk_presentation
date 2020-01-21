@@ -20,15 +20,6 @@
   animation-delay: 1s, 0s;
 }
 
-@keyframes waiting {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
 #notepadsvg #trash1.visible {
   animation-name: smooth-fade-in, shift-down;
   animation-duration: 1s, 1s;
