@@ -23,6 +23,11 @@
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/zenburn.css" />
     <script>
+      const loaders = []
+      const eventHandlers = {
+        fragmentHide: [],
+        fragmentShow: []
+      }
       const agenda = [
         { id: 'einleitung', title: 'Einleitung' },
         { id: 'system', title: 'System' },
@@ -201,7 +206,7 @@
         <section id="s9" class="flex" data-progress-bar-id="projekt">
           <h1 style="align-self: flex-start;">Planung</h1>
           <script>
-            window.setTimeout(_ => {
+            loaders.push(_ => {
               const isRight = id =>
                 [
                   'planung-borders',
@@ -311,9 +316,9 @@
                   e.classList.toggle('visible')
                 }
               }
-              Reveal.addEventListener('fragmentshown', handleShow)
-              Reveal.addEventListener('fragmenthidden', handleHide)
-            }, 1000)
+              eventHandlers.fragmentShow.push(handleShow)
+              eventHandlers.fragmentHide.push(handleHide)
+            })
           </script>
           <div style="align-self: stretch; height: 59vh;">
             <include src="./mastercss/strukturplan_gesamt.css"></include>
@@ -371,7 +376,7 @@
             }
           </style>
           <script>
-            window.setTimeout(_ => {
+            loaders.push(_ => {
               const scrollIfId = (eId, id, value) => {
                 if (eId === id) {
                   document.getElementById('DIV_1').scrollBy({
@@ -397,9 +402,9 @@
                   document.getElementById('DIV_1').scrollTo(0, 0)
                 }
               }
-              Reveal.addEventListener('fragmentshown', handle(1))
-              Reveal.addEventListener('fragmenthidden', handle(-1))
-            }, 1000)
+              eventHandlers.fragmentShow.push(handle(1))
+              eventHandlers.fragmentHide.push(handle(-1))
+            })
           </script>
           <h1 style="align-self: flex-start;">Schnittstelle</h1>
           <div
@@ -428,18 +433,21 @@
 
         <section id="s12" class="flex" data-progress-bar-id="entwurf">
           <script>
-            window.setTimeout(_ => {
-              const ids = [
-                'service-node',
-                'service-usedInterface',
-                'service-adapter',
-                'service-middleware',
-                'service-router',
-                'service-providedInterface',
-                's11-5',
-                's11-6',
-                's11-7'
-              ]
+            loaders.push(_ => {
+              const idMap = {
+                'service-node': 5,
+                'service-usedInterface': 4,
+                'service-connector': 4,
+                'service-adapter': 3,
+                'service-middleware': 2,
+                'service-router': 1,
+                'service-providedInterface': 1,
+                's11-1': 1,
+                's11-2': 2,
+                's11-3': 3
+              }
+              const ids = Object.keys(idMap)
+
               const isRight = id => ids.includes(id)
 
               const transitions = [
@@ -451,22 +459,20 @@
                 'scale(1)'
               ]
               const toBlock = transform => ({ transform })
-              const svg = document.getElementById('service')
-              let idx = 0
-
-              handle = sign => event => {
+              handle = type => event => {
                 if (!isRight(event.fragment.id)) return
-                svg.style.transform = transitions[idx + sign]
-                svg.animate(
-                  [toBlock(transitions[idx]), toBlock(transitions[idx + sign])],
-                  1000
-                )
-                idx += sign
+                const svg = document.getElementById('service')
+                let idx = idMap[event.fragment.id]
+                let from =
+                  type === 'show' ? { transform: transitions[idx - 1] } : {}
+                let to = type === 'show' ? { transform: transitions[idx] } : {}
+                svg.animate([from, to], 1000)
+                svg.style.transform = transitions[idx]
               }
 
-              Reveal.addEventListener('fragmentshown', handle(1))
-              Reveal.addEventListener('fragmenthidden', handle(-1))
-            }, 1000)
+              eventHandlers.fragmentShow.push(handle('show'))
+              eventHandlers.fragmentHide.push(handle('hide'))
+            })
           </script>
           <h1 style="align-self: flex-start;">Komponenten</h1>
           <style>
@@ -493,15 +499,15 @@
             }
           </style>
           <ul style="margin-bottom: 0.3em; font-size: 0.9em;">
-            <li id="s11-5" class="fragment" data-fragment-index="5">
+            <li id="s11-1" class="fragment" data-fragment-index="1">
               Orientierung an Koa
             </li>
-            <li id="s11-6" class="fragment" data-fragment-index="6">
+            <li id="s11-2" class="fragment" data-fragment-index="6">
               Koa Middleware als Eventhandle<br />
               <span>&rArr; Reichern HTTP context an</span> <br />
               <span>&rArr; Entscheiden über weitergabe</span>
             </li>
-            <li id="s11-7" class="fragment" data-fragment-index="7">
+            <li id="s11-3" class="fragment" data-fragment-index="7">
               Trennung von DB-Zugriff un -Verbindung
             </li>
           </ul>
@@ -513,7 +519,7 @@
           "
           >
             <include src="./mastercss/service_komponenten.css"></include>
-            <include src="./img/f.svg"></include>
+            <include src="./img/service_komponenten.svg"></include>
           </div>
         </section>
 
@@ -588,9 +594,8 @@
         </section>
 
         <script>
-          document
-            .querySelectorAll('.slides section:not(#s12)')
-            .forEach(e => (e.outerHTML = ''))
+          document.querySelectorAll('.slides section:not(#s12)')
+          // .forEach(e => (e.outerHTML = ''))
           window.setTimeout(_ => {
             for (let i = 0; i < 20; i++) {
               // Reveal.nextFragment()
@@ -631,59 +636,72 @@
 
         e.innerHTML = current
       })
-
       // More info about config & dependencies:
       // - https://github.com/hakimel/reveal.js#configuration
       // - https://github.com/hakimel/reveal.js#dependencies
-      Reveal.initialize({
-        controls: false,
-        slideNumber: true,
-        // overview: false,
-        progress: false,
-        center: false,
-        dependencies: [
-          { src: 'plugin/markdown/marked.js' },
-          { src: 'plugin/markdown/markdown.js' },
-          { src: 'plugin/notes/notes.js', async: true },
-          {
-            src: 'plugin/highlight/highlight.js',
-            async: true,
-            callback: function() {
-              hljs.initHighlightingOnLoad()
+      window.onload = _ => {
+        loaders.forEach(l => l())
+
+        Reveal.initialize({
+          controls: false,
+          slideNumber: true,
+          // overview: false,
+          progress: false,
+          center: false,
+          dependencies: [
+            { src: 'plugin/markdown/marked.js' },
+            { src: 'plugin/markdown/markdown.js' },
+            { src: 'plugin/notes/notes.js', async: true },
+            {
+              src: 'plugin/highlight/highlight.js',
+              async: true,
+              callback: function() {
+                hljs.initHighlightingOnLoad()
+              }
+            },
+            //{ src: 'plugin/reveal-agenda/reveal-agenda.js', async: true, callback: function() { reveal_agenda.initialize({ agenda, insertToPosition: 1 }); } },
+            {
+              src: 'plugin/reveal-progress-bar/reveal-progress-bar.js',
+              async: true,
+              callback: function() {
+                reveal_progress_bar.initialize({ agenda })
+              }
             }
-          },
-          //{ src: 'plugin/reveal-agenda/reveal-agenda.js', async: true, callback: function() { reveal_agenda.initialize({ agenda, insertToPosition: 1 }); } },
-          {
-            src: 'plugin/reveal-progress-bar/reveal-progress-bar.js',
-            async: true,
-            callback: function() {
-              reveal_progress_bar.initialize({ agenda })
+          ]
+        })
+
+        Reveal.configure({
+          keyboard: {
+            /* P */ 80: () => {
+              document
+                .querySelector('.reveal .slides')
+                .setAttribute('style', '')
+              print()
             }
           }
-        ]
-      })
+        })
 
-      Reveal.configure({
-        keyboard: {
-          /* P */ 80: () => {
-            document.querySelector('.reveal .slides').setAttribute('style', '')
-            print()
-          }
-        }
-      })
+        eventHandlers.fragmentShow.forEach(handler =>
+          Reveal.addEventListener('fragmentshown', handler)
+        )
 
-      Reveal.addEventListener('slidechanged', event => {
-        console.log(event)
-        console.log(Reveal.getIndices())
-      })
+        eventHandlers.fragmentHide.forEach(handler =>
+          Reveal.addEventListener('fragmenthidden', handler)
+        )
 
-      Reveal.addEventListener('fragmentshown', function(event) {
-        console.log(event)
-      })
-      Reveal.addEventListener('fragmenthidden', function(event) {
-        console.log(event)
-        // event.fragment = the fragment DOM element
-      })
+        Reveal.addEventListener('slidechanged', event => {
+          console.log(event)
+          console.log(Reveal.getIndices())
+        })
+
+        Reveal.addEventListener('fragmentshown', function(event) {
+          console.log(event)
+        })
+        Reveal.addEventListener('fragmenthidden', function(event) {
+          console.log(event)
+          // event.fragment = the fragment DOM element
+        })
+      }
     </script>
 
     <link rel="stylesheet" href="./mastercss/master.css" />
