@@ -1,2 +1,98 @@
-#EMPTY {
+#depl.zero {
+  transform: translate(60%, 0) scale(2);
+}
+
+#depl.zero #depl-test-upper-box {
+  transform: translate(-720px, 310px);
+}
+
+#depl.zero #depl-h-arrow-3 {
+  transform: translate(-720px, 0px);
+}
+
+#depl.zero #depl-deploy-box {
+  transform: translate(-520px, 0px);
+}
+
+#depl.zero #depl-lint.visible {
+  animation: smooth-fade-in 0.8s;
+}
+#depl.zero #depl-lint.visible ~ #depl-h-arrow-1 {
+  animation-name: smooth-fade-in, depl-zero-1;
+  animation-duration: 0.8s, 0.8s;
+  animation-delay: 0.8s, 0.8;
+}
+#depl.zero #depl-lint.visible ~ #depl-build {
+  animation-name: smooth-fade-in, depl-zero-2;
+  animation-duration: 0.8s, 0.8s;
+  animation-delay: 0.8s, 0.8;
+}
+#depl.zero #depl-lint.visible ~ #depl-h-arrow-2 {
+  animation-name: smooth-fade-in, depl-zero-3;
+  animation-duration: 0.8s, 0.8s;
+  animation-delay: 0.8s, 0.8;
+}
+#depl.zero #depl-lint.visible ~ #depl-test-upper-box {
+  animation-name: smooth-fade-in, depl-zero-4;
+  animation-duration: 0.8s, 0.8s;
+  animation-delay: 0.8s, 0.8;
+}
+#depl.zero #depl-lint.visible ~ #depl-h-arrow-3 {
+  animation-name: smooth-fade-in, depl-zero-5;
+  animation-duration: 0.8s, 0.8s;
+  animation-delay: 0.8s, 0.8;
+}
+#depl.zero #depl-lint.visible ~ #depl-deploy-box {
+  animation-name: smooth-fade-in, depl-zero-6;
+  animation-duration: 0.8s, 0.8s;
+  animation-delay: 0.8s, 0.8;
+}
+
+@keyframes depl-zero-1 {
+  from {
+    transform: translate(-100px, 0);
+  }
+  to {
+    transform: translate(0px, 0);
+  }
+}
+@keyframes depl-zero-2 {
+  from {
+    transform: translate(-200px, 0);
+  }
+  to {
+    transform: translate(0px, 0);
+  }
+}
+@keyframes depl-zero-3 {
+  from {
+    transform: translate(-300px, 0);
+  }
+  to {
+    transform: translate(0px, 0);
+  }
+}
+@keyframes depl-zero-4 {
+  from {
+    transform: translate(-1220px, 310px);
+  }
+  to {
+    transform: translate(-720px, 310px);
+  }
+}
+@keyframes depl-zero-5 {
+  from {
+    transform: translate(-1320px, 0);
+  }
+  to {
+    transform: translate(-720px, 0);
+  }
+}
+@keyframes depl-zero-6 {
+  from {
+    transform: translate(-1120px, 0);
+  }
+  to {
+    transform: translate(-520px, 0);
+  }
 }

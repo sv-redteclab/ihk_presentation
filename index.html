@@ -643,8 +643,343 @@
           class="grid-rows"
           data-progress-bar-id="bereitstellung"
         >
+          <script>
+            loaders.push(_ => {
+              const getFIdx = f => Number(f.getAttribute('data-fragment-index'))
+              const isRight = id => id.includes('depl-')
+              let svg
+              const waiting = (e, t = 800, d = 0) => {
+                e.animate([{ opacity: 0 }, { opacity: 0 }], {
+                  duration: t,
+                  delay: d
+                })
+              }
+              const show = (e, t = 800, d = 0) => {
+                e.animate([{ opacity: 0 }, { opacity: 1 }], {
+                  duration: t,
+                  delay: d
+                })
+                e.style.opacity = 1
+              }
+              const hide = (e, t = 800, d = 0) => {
+                e.animate([{ opacity: 1 }, { opacity: 0 }], {
+                  duration: t,
+                  delay: d
+                })
+                e.style.opacity = 0
+              }
+              const toTransform = transform => ({ transform })
+
+              const transitions = {
+                0: {
+                  show: () => {},
+                  hide: () => {}
+                },
+                1: {
+                  show: () => {
+                    ;[
+                      'depl-test-upper-box',
+                      'depl-h-arrow-3',
+                      'depl-deploy-box'
+                    ]
+                      .map(id => document.getElementById(id))
+                      .forEach(e => hide(e))
+                    svg.animate(
+                      ['translate(60%, 0) scale(2)', 'scale(1)'].map(
+                        toTransform
+                      ),
+                      1000
+                    )
+                    svg.style.transform = 'scale(1)'
+                  },
+                  hide: () => {
+                    ;[
+                      'depl-test-upper-box',
+                      'depl-h-arrow-3',
+                      'depl-deploy-box'
+                    ]
+                      .map(id => document.getElementById(id))
+                      .forEach(e => show(e))
+                    svg.style.transform = 'translate(60%, 0) scale(2)'
+                  }
+                },
+                2: {
+                  show: () => {
+                    ;['depl-unit-validation', 'depl-unit-auth', 'depl-unit-dot']
+                      .map(id => document.getElementById(id))
+                      .forEach(e => {
+                        waiting(e, 800)
+                        show(e, 1000, 800)
+                        e.animate(
+                          ['translate(-30px, 0px)', 'translate(0px, 0px)'].map(
+                            toTransform
+                          ),
+                          {
+                            duration: 800,
+                            delay: 800
+                          }
+                        )
+                      })
+
+                    const jest = document.getElementById('depl-unit-jest')
+                    waiting(jest, 800)
+                    show(jest, 1000, 800)
+                    jest.animate(
+                      ['translate(30px, 0px)', 'translate(0px, 0px)'].map(
+                        toTransform
+                      ),
+                      {
+                        duration: 800,
+                        delay: 800
+                      }
+                    )
+
+                    svg.animate(
+                      ['scale(1)', 'translate(190px, 300px) scale(2)'].map(
+                        toTransform
+                      ),
+                      1000
+                    )
+                    svg.style.transform = 'translate(190px, 300px) scale(2)'
+                  },
+                  hide: () => {
+                    svg.style.transform = 'scale(1)'
+                  }
+                },
+                3: {
+                  show: () => {
+                    const outer = document.getElementById('depl-unit-outer')
+                    outer.animate(
+                      [
+                        {
+                          transform: 'scale(1.1)',
+                          transformOrigin: '737px 260px'
+                        },
+                        {
+                          transform: 'scale(1)',
+                          transformOrigin: '737px 260px'
+                        }
+                      ],
+                      800
+                    )
+                  },
+                  hide: () => {}
+                },
+                4: {
+                  show: () => {
+                    const outer = document.getElementById('depl-release-outer')
+                    waiting(outer, 1800)
+                    show(outer, 1000, 1800)
+                    outer.animate(
+                      [
+                        {
+                          transform: 'scale(1.1)',
+                          transformOrigin: '694.5px 420px'
+                        },
+                        {
+                          transform: 'scale(1)',
+                          transformOrigin: '694.5px 420px'
+                        }
+                      ],
+                      {
+                        duration: 800,
+                        delay: 1800
+                      }
+                    )
+
+                    svg.animate(
+                      [
+                        'translate(190px, 300px) scale(2)',
+                        'translate(190px, 0px) scale(2)'
+                      ].map(toTransform),
+                      1000
+                    )
+                    svg.style.transform = 'translate(190px, 0px) scale(2)'
+                  },
+                  hide: () => {
+                    svg.style.transform = 'translate(190px, 300px) scale(2)'
+                  }
+                },
+                5: {
+                  show: () => {
+                    const jest = document.getElementById('depl-int-jest')
+                    const release = document.getElementById('depl-int-release')
+                    const mongo = document.getElementById('depl-int-mongo')
+
+                    waiting(release, 1000)
+                    show(release, 800, 1000)
+                    waiting(mongo, 1800)
+                    show(mongo, 800, 1400)
+                    waiting(jest, 1800)
+                    show(jest, 800, 1800)
+
+                    mongo.animate(
+                      ['translate(30px, 0px)', 'translate(0px, 0px)'].map(
+                        toTransform
+                      ),
+                      { duration: 800, delay: 1400 }
+                    )
+
+                    jest.animate(
+                      ['translate(-30px, 0px)', 'translate(0px, 0px)'].map(
+                        toTransform
+                      ),
+                      { duration: 800, delay: 1800 }
+                    )
+
+                    svg.animate(
+                      [
+                        'translate(190px, 0px) scale(2)',
+                        'translate(190px, -300px) scale(2)'
+                      ].map(toTransform),
+                      1000
+                    )
+                    svg.style.transform = 'translate(190px, -300px) scale(2)'
+                  },
+                  hide: () => {
+                    svg.style.transform = 'translate(190px, 0px) scale(2)'
+                  }
+                },
+                6: {
+                  show: () => {
+                    const outer = document.getElementById('depl-int-outer')
+                    outer.animate(
+                      [
+                        {
+                          transform: 'scale(1.1)',
+                          transformOrigin: '770px 720px'
+                        },
+                        {
+                          transform: 'scale(1)',
+                          transformOrigin: '770px 720px'
+                        }
+                      ],
+                      800
+                    )
+                  },
+                  hide: () => {}
+                },
+                7: {
+                  show: () => {
+                    const upper = document.getElementById('depl-test-upper-box')
+                    waiting(upper, 1000)
+                    show(upper, 800, 1000)
+
+                    const test = document.getElementById('depl-test')
+                    waiting(test, 1000)
+                    show(test, 800, 1000)
+
+                    svg.animate(
+                      ['translate(190px, -300px) scale(2)', 'scale(1)'].map(
+                        toTransform
+                      ),
+                      1000
+                    )
+                    svg.style.transform = 'scale(1)'
+                  },
+                  hide: () => {
+                    const upper = document.getElementById('depl-test-upper-box')
+                    hide(upper)
+
+                    const test = document.getElementById('depl-test')
+                    hide(test)
+
+                    svg.style.transform = 'translate(190px, -300px) scale(2)'
+                  }
+                },
+                8: {
+                  show: () => {
+                    const box = document.getElementById('depl-deploy-box')
+                    show(box)
+                  },
+                  hide: () => {
+                    const box = document.getElementById('depl-deploy-box')
+                    hide(box)
+                  }
+                },
+                9: {
+                  show: () => {
+                    const release = document.getElementById('depl-release')
+                    release.animate(
+                      ['translate(0px, 0px)', 'translate(700px, 0px)'].map(
+                        toTransform
+                      ),
+                      { duration: 1000, delay: 1000 }
+                    )
+                    release.animate([{ opacity: 1 }, { opacity: 0 }], {
+                      duration: 500,
+                      delay: 1500
+                    })
+
+                    const arrow = document.getElementById('depl-h-arrow-3')
+                    show(arrow)
+                  },
+                  hide: () => {
+                    const arrow = document.getElementById('depl-h-arrow-3')
+                    hide(arrow)
+                  }
+                },
+                10: {
+                  show: () => {},
+                  hide: () => {}
+                },
+                11: {
+                  show: () => {},
+                  hide: () => {}
+                },
+                12: {
+                  show: () => {},
+                  hide: () => {}
+                },
+                13: {
+                  show: () => {},
+                  hide: () => {}
+                },
+                14: {
+                  show: () => {},
+                  hide: () => {}
+                },
+                15: {
+                  show: () => {},
+                  hide: () => {}
+                },
+                16: {
+                  show: () => {},
+                  hide: () => {}
+                },
+                17: {
+                  show: () => {},
+                  hide: () => {}
+                },
+                18: {
+                  show: () => {},
+                  hide: () => {}
+                },
+                19: {
+                  show: () => {},
+                  hide: () => {}
+                }
+              }
+
+              handle = type => event => {
+                if (!isRight(event.fragment.id)) return
+                svg = svg || document.getElementById('depl')
+                const f = event.fragment
+                const id = f.id
+                const idx = getFIdx(f)
+                transitions[idx][type]()
+                if (idx === 0 || idx === 1) svg.classList.toggle('zero')
+                return
+              }
+
+              eventHandlers.fragmentShow.push(handle('show'))
+              eventHandlers.fragmentHide.push(handle('hide'))
+            })
+          </script>
           <h1 style="align-self: flex-start;">Bereitstellung</h1>
-          <div style="align-self: stretch; height: calc(100% - 0.5em);">
+          <div
+            style="align-self: stretch; overflow:hidden; : calc(100% - 0.5em);"
+          >
             <include src="./mastercss/deployment_h.css"></include>
             <include src="./img/deployment_h.svg"></include>
           </div>
@@ -706,7 +1041,7 @@
 
         <script>
           document
-            .querySelectorAll('.slides section:not(#s13)')
+            .querySelectorAll('.slides section:not(#s14)')
             .forEach(e => (e.outerHTML = ''))
           window.setTimeout(_ => {
             for (let i = 0; i < 20; i++) {
