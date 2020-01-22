@@ -407,7 +407,19 @@
             })
           </script>
           <h1 style="align-self: flex-start;">Schnittstelle</h1>
-          <div style="align-self: stretch; height: calc(100% - 0.5em);">
+          <div
+            style="align-self: stretch; overflow: hidden; height: calc(100% - 0.5em);"
+          >
+            <div
+              style="
+            height: 100px;
+            width: 100%;
+            position: absolute;
+            background: linear-gradient(0deg, white, transparent);
+            bottom: 0.5em;
+            z-index: 2000;
+            "
+            ></div>
             <div
               id="OpenAPI"
               class="fragment always-visible"
@@ -1043,7 +1055,7 @@
 
         <script>
           document
-            .querySelectorAll('.slides section:not(#s14)')
+            .querySelectorAll('.slides section:not(#s11)')
             .forEach(e => (e.outerHTML = ''))
           window.setTimeout(_ => {
             for (let i = 0; i < 20; i++) {
