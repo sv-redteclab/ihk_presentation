@@ -529,8 +529,110 @@
         </section>
 
         <section id="s13" class="grid-rows" data-progress-bar-id="entwurf">
+          <script>
+            loaders.push(_ => {
+              const ids = [
+                'mvc-middleware',
+                'mvc-lifelines',
+                'mvc-request-in',
+                'mvc-auth',
+                'mvc-validation',
+                'mvc-entries-in',
+                'mvc-adapter-in',
+                'mvc-connector-in',
+                'mvc-db-request',
+                'mvc-connector-out',
+                'mvc-adapter-out',
+                'mvc-set-status',
+                'mvc-entries-out',
+                'mvc-break-box',
+                'mvc-error',
+                'mvc-response-out'
+              ]
+              const getFIdx = f => Number(f.getAttribute('data-fragment-index'))
+              const isRight = id => ids.includes(id)
+
+              const transitions = [
+                [1, 0, 0],
+                [2.5, 150, 180],
+                [2.5, 150, 180],
+                [2.5, 150, 180],
+                [2.5, 115, 150],
+                [2.5, -20, 110],
+                [2.5, -110, 110],
+                [2.5, -170, 110],
+                [2.5, -170, 50],
+                [2.5, -170, 50],
+                [2.5, -170, -60],
+
+                [1, 0, 0]
+              ].map(([s, x, y]) => `scale(${s}) translate(${x}px, ${y}px)`)
+
+              const boxesTransitions = [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                50,
+                50,
+                130,
+                130,
+                277,
+                0
+              ].map(y => `translate(0px, ${y}px)`)
+
+              const toTransform = transform => ({ transform })
+              let boxes
+              let boxesBg
+              let svg
+
+              handle = type => event => {
+                if (!isRight(event.fragment.id)) return
+                boxesBg = boxesBg || document.getElementById('mvc-boxes-bg')
+                boxes = boxes || document.getElementById('mvc-boxes')
+                svg = svg || document.getElementById('mvc')
+
+                const f = event.fragment
+                const id = f.id
+                const idx = getFIdx(f)
+
+                if (idx === 4 || (idx === 10 && type === 'hide')) {
+                  boxesBg.setAttribute('fill', 'white')
+                }
+                if (idx === 3 || (idx === 10 && type === 'show')) {
+                  boxesBg.setAttribute('fill', 'none')
+                }
+
+                if (type === 'show') {
+                  let svgKeyframes = [transitions[idx], transitions[idx + 1]]
+                  let boxKeyframes = [
+                    boxesTransitions[idx],
+                    boxesTransitions[idx + 1]
+                  ]
+                  if (![1, 2].includes(idx)) {
+                    svg.animate(svgKeyframes.map(toTransform), 1000)
+                    boxes.animate(boxKeyframes.map(toTransform), 1000)
+                  }
+                  svg.style.transform = transitions[idx + 1]
+                  boxes.style.transform = boxesTransitions[idx + 1]
+                }
+
+                if (type === 'hide') {
+                  svg.style.transform = transitions[idx]
+                  boxes.style.transform = boxesTransitions[idx]
+                }
+              }
+
+              eventHandlers.fragmentShow.push(handle('show'))
+              eventHandlers.fragmentHide.push(handle('hide'))
+            })
+          </script>
           <h1 style="align-self: flex-start;">Kontrollfluss</h1>
-          <div style="align-self: stretch; height: calc(100% - 0.5em);">
+          <div
+            style="align-self: stretch; overflow: hidden; height: calc(100% - 0.5em);"
+          >
             <include src="./mastercss/service_request.css"></include>
             <include src="./img/service_request.svg"></include>
           </div>
@@ -604,7 +706,7 @@
 
         <script>
           document
-            .querySelectorAll('.slides section:not(#s11)')
+            .querySelectorAll('.slides section:not(#s13)')
             .forEach(e => (e.outerHTML = ''))
           window.setTimeout(_ => {
             for (let i = 0; i < 20; i++) {
