@@ -827,6 +827,37 @@
                       { duration: 800, delay: 1800 }
                     )
 
+                    const releaseDocker = document.getElementById(
+                      'depl-release'
+                    )
+                    releaseDocker.animate(
+                      [
+                        {
+                          transform: 'scale(1)',
+                          transformOrigin: '770px 720px'
+                        },
+                        {
+                          transform: 'scale(0)',
+                          transformOrigin: '770px 720px'
+                        }
+                      ],
+                      {
+                        duration: 1000,
+                        delay: 200,
+                        easing: 'cubic-bezier(0.6,0,1,1)'
+                      }
+                    )
+                    releaseDocker.animate([{ opacity: 1 }, { opacity: 0 }], {
+                      duration: 500,
+                      delay: 700
+                    })
+                    waiting(releaseDocker, 2500, 1000)
+                    releaseDocker.animate([{ opacity: 0 }, { opacity: 1 }], {
+                      duration: 1200,
+                      delay: 3500,
+                      ease: 'cubic-bezier(0.9,0,1,1)'
+                    })
+
                     svg.animate(
                       [
                         'translate(190px, 0px) scale(2)',
@@ -901,10 +932,21 @@
                   show: () => {
                     const release = document.getElementById('depl-release')
                     release.animate(
-                      ['translate(0px, 0px)', 'translate(700px, 0px)'].map(
-                        toTransform
-                      ),
-                      { duration: 1000, delay: 1000 }
+                      [
+                        {
+                          transform: 'translate(0px, 0px)',
+                          animationTimingFunction: 'ease-in'
+                        },
+                        {
+                          transform: 'translate(700px, 0px)',
+                          animationTimingFunction: 'ease-in'
+                        }
+                      ],
+                      {
+                        duration: 1000,
+                        delay: 1000,
+                        easing: 'cubic-bezier(0.6,0,1,1)'
+                      }
                     )
                     release.animate([{ opacity: 1 }, { opacity: 0 }], {
                       duration: 500,
@@ -918,46 +960,6 @@
                     const arrow = document.getElementById('depl-h-arrow-3')
                     hide(arrow)
                   }
-                },
-                10: {
-                  show: () => {},
-                  hide: () => {}
-                },
-                11: {
-                  show: () => {},
-                  hide: () => {}
-                },
-                12: {
-                  show: () => {},
-                  hide: () => {}
-                },
-                13: {
-                  show: () => {},
-                  hide: () => {}
-                },
-                14: {
-                  show: () => {},
-                  hide: () => {}
-                },
-                15: {
-                  show: () => {},
-                  hide: () => {}
-                },
-                16: {
-                  show: () => {},
-                  hide: () => {}
-                },
-                17: {
-                  show: () => {},
-                  hide: () => {}
-                },
-                18: {
-                  show: () => {},
-                  hide: () => {}
-                },
-                19: {
-                  show: () => {},
-                  hide: () => {}
                 }
               }
 
