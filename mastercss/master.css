@@ -57,6 +57,12 @@
   flex-flow: column;
 }
 
+.reveal .slides .grid-rows {
+  display: grid !important;
+  grid-template-rows: min-content;
+  grid-auto-rows: auto;
+}
+
 .reveal .slides .layout-center,
 .reveal .slides .reveal-agenda {
   height: 93%;

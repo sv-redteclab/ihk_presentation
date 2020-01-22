@@ -60,33 +60,33 @@
           </ul>
         </section>
 
-        <section id="s3" class="flex" data-progress-bar-id="einleitung">
+        <section id="s3" class="grid-rows" data-progress-bar-id="einleitung">
           <h1 style="align-self: flex-start;">Die RTL</h1>
-          <div style="align-self: stretch;  height:59vh;">
+          <div style="align-self: stretch;  height: calc(100% - 0.5em);">
             <include src="./img/company.svg"></include>
           </div>
         </section>
 
-        <section id="s4" class="flex" data-progress-bar-id="einleitung">
+        <section id="s4" class="grid-rows" data-progress-bar-id="einleitung">
           <h1 style="align-self: flex-start;">Merkzettel</h1>
-          <div style="align-self: stretch; height: 55vh;">
+          <div style="align-self: stretch; height: calc(100% - 0.5em);">
             <include src="./mastercss/notepad.css"></include>
             <include src="./img/notepad.svg"></include>
           </div>
         </section>
 
-        <section id="s5" class="flex" data-progress-bar-id="system">
+        <section id="s5" class="grid-rows" data-progress-bar-id="system">
           <h1 style="align-self: flex-start;">Systemumgebung</h1>
           <!-- TODO SVG viewbox -->
-          <div style="align-self: stretch; height:59vh;">
+          <div style="align-self: stretch; height: calc(100% - 0.5em);;">
             <include src="./mastercss/new_architecture.css"></include>
             <include src="./img/new_architecture.svg"></include>
           </div>
         </section>
 
-        <section id="s6" class="flex" data-progress-bar-id="system">
+        <section id="s6" class="grid-rows" data-progress-bar-id="system">
           <h1 style="align-self: flex-start;">Systemkomponenten</h1>
-          <div style="align-self: stretch; height: 59vh;">
+          <div style="align-self: stretch; height: calc(100% - 0.5em);;">
             <include src="./mastercss/components_combined.css"></include>
             <include src="./img/components_combined.svg"></include>
           </div>
@@ -203,7 +203,7 @@
           <h1 style="align-self: flex-start;">Projektimpulse</h1>
         </section> -->
 
-        <section id="s9" class="flex" data-progress-bar-id="projekt">
+        <section id="s9" class="grid-rows" data-progress-bar-id="projekt">
           <h1 style="align-self: flex-start;">Planung</h1>
           <script>
             loaders.push(_ => {
@@ -320,13 +320,13 @@
               eventHandlers.fragmentHide.push(handleHide)
             })
           </script>
-          <div style="align-self: stretch; height: 59vh;">
+          <div style="align-self: stretch; height: calc(100% - 0.5em);">
             <include src="./mastercss/strukturplan_gesamt.css"></include>
             <include src="./img/strukturplan_gesamt.svg"></include>
           </div>
         </section>
 
-        <section id="s11" class="flex" data-progress-bar-id="entwurf">
+        <section id="s11" class="grid-rows" data-progress-bar-id="entwurf">
           <style>
             #s11 #OpenAPI {
               display: grid;
@@ -425,13 +425,18 @@
               </li>
             </ul>
           </div>
-          <div style="align-self: stretch; height: 59vh;">
+          <div style="align-self: stretch; height: calc(100% - 0.5em);">
             <include src="./mastercss/swagger_snippet.css"></include>
             <include src="./img/swagger_snippet.html"></include>
           </div>
         </section>
 
-        <section id="s12" class="flex" data-progress-bar-id="entwurf">
+        <section
+          id="s12"
+          class="grid-rows"
+          style="grid-template-rows: min-content min-content auto;"
+          data-progress-bar-id="entwurf"
+        >
           <script>
             loaders.push(_ => {
               const idMap = {
@@ -515,7 +520,7 @@
             style="
             align-self: stretch;
             overflow: hidden;
-            height: inherit;
+            height: calc(100% - 0.5em);
           "
           >
             <include src="./mastercss/service_komponenten.css"></include>
@@ -523,17 +528,21 @@
           </div>
         </section>
 
-        <section id="s13" class="flex" data-progress-bar-id="entwurf">
+        <section id="s13" class="grid-rows" data-progress-bar-id="entwurf">
           <h1 style="align-self: flex-start;">Kontrollfluss</h1>
-          <div style="align-self: stretch; height: 59vh;">
+          <div style="align-self: stretch; height: calc(100% - 0.5em);">
             <include src="./mastercss/service_request.css"></include>
             <include src="./img/service_request.svg"></include>
           </div>
         </section>
 
-        <section id="s14" class="flex" data-progress-bar-id="bereitstellung">
+        <section
+          id="s14"
+          class="grid-rows"
+          data-progress-bar-id="bereitstellung"
+        >
           <h1 style="align-self: flex-start;">Bereitstellung</h1>
-          <div style="align-self: stretch; height: 59vh;">
+          <div style="align-self: stretch; height: calc(100% - 0.5em);">
             <include src="./mastercss/deployment_h.css"></include>
             <include src="./img/deployment_h.svg"></include>
           </div>
