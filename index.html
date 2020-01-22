@@ -351,7 +351,7 @@
               }
               to {
                 opacity: 0;
-                height: 0;
+                height: 0px;
                 padding: 0;
               }
             }
@@ -407,25 +407,25 @@
             })
           </script>
           <h1 style="align-self: flex-start;">Schnittstelle</h1>
-          <div
-            id="OpenAPI"
-            class="fragment always-visible"
-            data-fragment-index="2"
-          >
-            <div class="fragment" data-fragment-index="1">OpenAPI</div>
-            <ul class="fragment" data-fragment-index="1">
-              <li class="fragment" data-fragment-index="1">
-                Standard
-              </li>
-              <li class="fragment" data-fragment-index="1">
-                JSON/YML For mat &rArr; Maschinenlesbar
-              </li>
-              <li class="fragment" data-fragment-index="1">
-                Objektbeschr eibung als JSON-Schema
-              </li>
-            </ul>
-          </div>
           <div style="align-self: stretch; height: calc(100% - 0.5em);">
+            <div
+              id="OpenAPI"
+              class="fragment always-visible"
+              data-fragment-index="2"
+            >
+              <div class="fragment" data-fragment-index="1">OpenAPI</div>
+              <ul class="fragment" data-fragment-index="1">
+                <li class="fragment" data-fragment-index="1">
+                  Standard
+                </li>
+                <li class="fragment" data-fragment-index="1">
+                  JSON/YML For mat &rArr; Maschinenlesbar
+                </li>
+                <li class="fragment" data-fragment-index="1">
+                  Objektbeschr eibung als JSON-Schema
+                </li>
+              </ul>
+            </div>
             <include src="./mastercss/swagger_snippet.css"></include>
             <include src="./img/swagger_snippet.html"></include>
           </div>
@@ -603,8 +603,9 @@
         </section>
 
         <script>
-          document.querySelectorAll('.slides section:not(#s12)')
-          // .forEach(e => (e.outerHTML = ''))
+          document
+            .querySelectorAll('.slides section:not(#s11)')
+            .forEach(e => (e.outerHTML = ''))
           window.setTimeout(_ => {
             for (let i = 0; i < 20; i++) {
               // Reveal.nextFragment()
