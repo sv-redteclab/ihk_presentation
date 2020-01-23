@@ -26,7 +26,8 @@
       const loaders = []
       const eventHandlers = {
         fragmentHide: [],
-        fragmentShow: []
+        fragmentShow: [],
+        slideChange: []
       }
       const agenda = [
         { id: 'einleitung', title: 'Einleitung' },
@@ -35,7 +36,7 @@
         { id: 'entwurf', title: 'Entwurf' },
         // { id: 'komponenten', title: 'Komponenten' },
         { id: 'bereitstellung', title: 'Bereitstellung' },
-        { id: 'resume', title: 'Resume' }
+        { id: 'resumee', title: 'Resümee' }
       ]
     </script>
   </head>
@@ -56,7 +57,7 @@
             <li>Entwurf</li>
             <!-- <li> Komponenten </li> -->
             <li>Bereitstellung</li>
-            <li>Resume</li>
+            <li>Resümee</li>
           </ul>
         </section>
 
@@ -207,15 +208,15 @@
           <h1 style="align-self: flex-start;">Planung</h1>
           <script>
             loaders.push(_ => {
-              const isRight = id =>
-                [
-                  'planung-borders',
-                  'planung-init',
-                  'planung-planung',
-                  'planung-entwurf',
-                  'planung-impl',
-                  'planung-abschluss'
-                ].includes(id)
+              const ids = [
+                'planung-borders',
+                'planung-init',
+                'planung-planung',
+                'planung-entwurf',
+                'planung-impl',
+                'planung-abschluss'
+              ]
+              const isRight = id => ids.includes(id)
               const handleShow = event => {
                 const fragment = event.fragment
                 if (!isRight(fragment.id)) return
@@ -224,7 +225,7 @@
                     .map(e => Array.from(e.children))
                     .flat()
                     .forEach((e, idx) => {
-                      e.classList.toggle('visible')
+                      e.classList.add('visible')
                       let bb = e.getBBox()
                       let a = bb.x
                       let b = bb.y
@@ -264,7 +265,7 @@
                 Array.from(fragment.children)
                   .reverse()
                   .forEach((e, idx) => {
-                    e.classList.toggle('visible')
+                    e.classList.add('visible')
                     let bb = e.getBBox()
                     let a = bb.x
                     let b = bb.y
@@ -308,16 +309,32 @@
                     .map(e => Array.from(e.children))
                     .flat()
                     .forEach((e, idx) => {
-                      e.classList.toggle('visible')
+                      e.classList.remove('visible')
                     })
                   return
                 }
                 for (const e of fragment.children) {
-                  e.classList.toggle('visible')
+                  e.classList.remove('visible')
                 }
               }
               eventHandlers.fragmentShow.push(handleShow)
               eventHandlers.fragmentHide.push(handleHide)
+
+              eventHandlers.slideChange.push(event => {
+                if (event.indexh !== 8 && event.indexh !== 6) return
+                if (event.indexh === 8 && event.previousSlide.id === 's9') {
+                  ids
+                    .map(id => document.getElementById(id))
+                    .map(fragment => ({ fragment }))
+                    .forEach(handleShow)
+                }
+                if (event.indexh === 6 && event.previousSlide.id === 's9') {
+                  ids
+                    .map(id => document.getElementById(id))
+                    .map(fragment => ({ fragment }))
+                    .forEach(handleHide)
+                }
+              })
             })
           </script>
           <div style="align-self: stretch; height: calc(100% - 0.5em);">
@@ -397,13 +414,24 @@
                 if (
                   event.fragments[1] &&
                   event.fragments[1].id === 'DIV_240' &&
-                  sign === -1
+                  true
+                  // sign === -1
                 ) {
                   document.getElementById('DIV_1').scrollTo(0, 0)
                 }
               }
               eventHandlers.fragmentShow.push(handle(1))
               eventHandlers.fragmentHide.push(handle(-1))
+
+              eventHandlers.slideChange.push(event => {
+                if (event.indexh !== 9 && event.indexh !== 7) return
+                if (event.indexh === 9 && event.previousSlide.id === 's11') {
+                  document.getElementById('DIV_1').scrollTo(0, 1003)
+                }
+                if (event.indexh === 7 && event.previousSlide.id === 's11') {
+                  document.getElementById('DIV_1').scrollTo(0, 0)
+                }
+              })
             })
           </script>
           <h1 style="align-self: flex-start;">Schnittstelle</h1>
@@ -452,16 +480,16 @@
           <script>
             loaders.push(_ => {
               const idMap = {
-                'service-node': 5,
+                'service-providedInterface': 1,
+                'service-router': 1,
+                's11-1': 1,
+                'service-middleware': 2,
+                's11-2': 2,
+                'service-adapter': 3,
+                's11-3': 3,
                 'service-usedInterface': 4,
                 'service-connector': 4,
-                'service-adapter': 3,
-                'service-middleware': 2,
-                'service-router': 1,
-                'service-providedInterface': 1,
-                's11-1': 1,
-                's11-2': 2,
-                's11-3': 3
+                'service-node': 5
               }
               const ids = Object.keys(idMap)
 
@@ -476,7 +504,7 @@
                 'scale(1)'
               ]
               const toBlock = transform => ({ transform })
-              handle = type => event => {
+              const handle = type => event => {
                 if (!isRight(event.fragment.id)) return
                 const svg = document.getElementById('service')
                 let idx = idMap[event.fragment.id]
@@ -489,6 +517,23 @@
 
               eventHandlers.fragmentShow.push(handle('show'))
               eventHandlers.fragmentHide.push(handle('hide'))
+
+              eventHandlers.slideChange.push(event => {
+                if (event.indexh !== 10 && event.indexh !== 8) return
+                console.log(11111)
+                if (event.indexh === 10 && event.previousSlide.id === 's12') {
+                  ids
+                    .map(id => document.getElementById(id))
+                    .map(fragment => ({ fragment }))
+                    .forEach(handle('show'))
+                }
+                if (event.indexh === 8 && event.previousSlide.id === 's12') {
+                  ids
+                    .map(id => document.getElementById(id))
+                    .map(fragment => ({ fragment }))
+                    .forEach(handle('hide'))
+                }
+              })
             })
           </script>
           <h1 style="align-self: flex-start;">Komponenten</h1>
@@ -600,7 +645,7 @@
               let boxesBg
               let svg
 
-              handle = type => event => {
+              const handle = type => event => {
                 if (!isRight(event.fragment.id)) return
                 boxesBg = boxesBg || document.getElementById('mvc-boxes-bg')
                 boxes = boxes || document.getElementById('mvc-boxes')
@@ -639,6 +684,22 @@
 
               eventHandlers.fragmentShow.push(handle('show'))
               eventHandlers.fragmentHide.push(handle('hide'))
+
+              eventHandlers.slideChange.push(event => {
+                if (event.indexh !== 11 && event.indexh !== 9) return
+                if (event.indexh === 11 && event.previousSlide.id === 's13') {
+                  ids
+                    .map(id => document.getElementById(id))
+                    .map(fragment => ({ fragment }))
+                    .forEach(handle('show'))
+                }
+                if (event.indexh === 9 && event.previousSlide.id === 's13') {
+                  ids
+                    .map(id => document.getElementById(id))
+                    .map(fragment => ({ fragment }))
+                    .forEach(handle('hide'))
+                }
+              })
             })
           </script>
           <h1 style="align-self: flex-start;">Kontrollfluss</h1>
@@ -975,19 +1036,37 @@
                 }
               }
 
-              handle = type => event => {
+              const handle = type => event => {
                 if (!isRight(event.fragment.id)) return
                 svg = svg || document.getElementById('depl')
                 const f = event.fragment
                 const id = f.id
                 const idx = getFIdx(f)
                 transitions[idx][type]()
-                if (idx === 0 || idx === 1) svg.classList.toggle('zero')
+                if (idx === 0) svg.classList.add('zero')
+                if (idx === 1) svg.classList.remove('zero')
                 return
               }
 
               eventHandlers.fragmentShow.push(handle('show'))
               eventHandlers.fragmentHide.push(handle('hide'))
+
+              eventHandlers.slideChange.push(event => {
+                if (event.indexh !== 12 && event.indexh !== 10) return
+                if (event.indexh === 12 && event.previousSlide.id === 's14') {
+                  Object.keys(transitions)
+                    .map(k => ({ id: 'depl-', getAttribute: () => k }))
+                    .map(fragment => ({ fragment }))
+                    .forEach(handle('show'))
+                }
+                if (event.indexh === 10 && event.previousSlide.id === 's14') {
+                  Object.keys(transitions)
+                    .map(k => ({ id: 'depl-', getAttribute: () => k }))
+                    .map(fragment => ({ fragment }))
+                    .reverse()
+                    .forEach(handle('hide'))
+                }
+              })
             })
           </script>
           <h1 style="align-self: flex-start;">Bereitstellung</h1>
@@ -999,8 +1078,8 @@
           </div>
         </section>
 
-        <section id="s15" class="flex" data-progress-bar-id="resume">
-          <h1 style="align-self: flex-start; margin-bottom: 1em;">Resume</h1>
+        <section id="s15" class="flex" data-progress-bar-id="resumee">
+          <h1 style="align-self: flex-start; margin-bottom: 1em;">Resümee</h1>
           <div
             style="
             align-self: center;
@@ -1054,9 +1133,8 @@
         </section>
 
         <script>
-          document
-            .querySelectorAll('.slides section:not(#s11)')
-            .forEach(e => (e.outerHTML = ''))
+          document.querySelectorAll('.slides section:not(#s11)')
+          // .forEach(e => (e.outerHTML = ''))
           window.setTimeout(_ => {
             for (let i = 0; i < 20; i++) {
               // Reveal.nextFragment()
@@ -1148,6 +1226,10 @@
 
         eventHandlers.fragmentHide.forEach(handler =>
           Reveal.addEventListener('fragmenthidden', handler)
+        )
+
+        eventHandlers.slideChange.forEach(handler =>
+          Reveal.addEventListener('slidechanged', handler)
         )
 
         Reveal.addEventListener('slidechanged', event => {
