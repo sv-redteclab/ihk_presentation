@@ -33,7 +33,7 @@
         { id: 'einleitung', title: 'Einleitung' },
         { id: 'system', title: 'System' },
         { id: 'projekt', title: 'Projekt' },
-        { id: 'entwurf', title: 'Entwurf' },
+        { id: 'entwurf', title: 'Service' },
         // { id: 'komponenten', title: 'Komponenten' },
         { id: 'bereitstellung', title: 'Bereitstellung' },
         { id: 'resumee', title: 'Resümee' }
@@ -46,6 +46,11 @@
         <section id="s1" class="layout-center" data-progress-bar-show="false">
           <h1 class="progress-bar-no-entry">Notepad-Service</h1>
           <h4 class="progress-bar-no-entry">ehem. Wishlist-Service</h4>
+          <aside class="notes">
+            - 14 Monate RedTecLab GmbH <br />
+            - Notepad-Service <br />
+            - ehem. Wishlist-Service <br />
+          </aside>
         </section>
 
         <section id="s2" class="layout-center" data-progress-bar-show="false">
@@ -54,7 +59,7 @@
             <li>Einleitung</li>
             <li>System</li>
             <li>Projekt</li>
-            <li>Entwurf</li>
+            <li>Service</li>
             <!-- <li> Komponenten </li> -->
             <li>Bereitstellung</li>
             <li>Resümee</li>
@@ -63,34 +68,89 @@
 
         <section id="s3" class="grid-rows" data-progress-bar-id="einleitung">
           <h1 style="align-self: flex-start;">Die RTL</h1>
-          <div style="align-self: stretch;  height: calc(100% - 0.5em);">
+          <div style="align-self: stretch; overflow: hidden; height: calc(100% - 0.5em);">
             <include src="./img/company.svg"></include>
           </div>
+          <aside class="notes">
+            - RedTecLab GmbH / RTL Softwaredienstleister<br />
+            - Tochter der Shop-Apotheke-Europe<br />
+            - 100 Mitarbeiter<br />
+            - Enge Zusammenarbeit Webshop<br />
+            - Kennt jeder <br />
+          </aside>
         </section>
 
         <section id="s4" class="grid-rows" data-progress-bar-id="einleitung">
           <h1 style="align-self: flex-start;">Merkzettel</h1>
-          <div style="align-self: stretch; height: calc(100% - 0.5em);">
+          <div style="align-self: stretch; overflow: hidden; height: calc(100% - 0.5em);">
             <include src="./mastercss/notepad.css"></include>
             <include src="./img/notepad.svg"></include>
           </div>
+          <aside class="notes">
+            - Gedächtnisstütze<br />
+            - Interessantes Produkt<br />
+            - Ablegen<br />
+            - Anschauen um zu kaufen<br />
+            - Entfernen<br />
+            - Aktuell verfügbare<br />
+            - Erweiterung der Benutzerschnittstelle<br />
+          </aside>
         </section>
 
         <section id="s5" class="grid-rows" data-progress-bar-id="system">
           <h1 style="align-self: flex-start;">Systemumgebung</h1>
           <!-- TODO SVG viewbox -->
-          <div style="align-self: stretch; height: calc(100% - 0.5em);;">
+          <div style="align-self: stretch; overflow: hidden; height: calc(100% - 0.5em);">
             <include src="./mastercss/new_architecture.css"></include>
             <include src="./img/new_architecture.svg"></include>
           </div>
+          <aside class="notes">
+            <div style="display: grid; grid-template-columns: 2; ">
+              <div style="grid-column: 1;">
+                - 2011 odyssee im Weltraum<br />
+                - Monolith gesamte Software<br />
+                - Skallierbarkeit, Balkonesk, Wartbarkeit<br />
+                - Zerlegung in kleine Applikationen<br />
+                - Bedarfsgerecht Skallierbar<br />
+                - Bereitstellung in der GoogleCloud<br />
+              </div>
+              <div style="grid-column: 2;">
+                - Gateway als gemeinsame Kommunikationsschnittstelle<br />
+                - Schrittweise &rarr; Monolith<br />
+                - Versionsverwaltung<br />
+                - Änderung &rArr; Bereitstellung<br />
+                - Keine Releasezyklen<br />
+                - Zerlegung Vorantreiben <br />
+              </div>
+            </div>
+          </aside>
         </section>
 
         <section id="s6" class="grid-rows" data-progress-bar-id="system">
           <h1 style="align-self: flex-start;">Systemkomponenten</h1>
-          <div style="align-self: stretch; height: calc(100% - 0.5em);;">
+          <div style="align-self: stretch; overflow: hidden; height: calc(100% - 0.5em);">
             <include src="./mastercss/components_combined.css"></include>
             <include src="./img/components_combined.svg"></include>
           </div>
+          <aside class="notes">
+            <div style="display: grid; grid-template-columns: 2; ">
+              <div style="grid-column: 1;">
+                - LINKS Monolith<br />
+                - Top to Bottom<br />
+                - Rechts Cloud und Neues Frontend<br />
+                - Produktdetailseite direkt Angebunden<br />
+                - Widerspruch &rArr; Vor Entwurf<br />
+              </div>
+              <div style="grid-column: 2;">
+                1. Spiegelung der Notepad Domäne<br />
+                2. Gateway anbinden<br />
+                3. Umstellung auf neues Frontend<br />
+                4. Löschung aus dem Monolithen<br />
+                &rArr; Zu viel
+                &rArr; Anschluss Projektplanung
+              </div>
+            </div>
+          </aside>
         </section>
 
         <section
@@ -161,14 +221,14 @@
               <h4 class="quality fragment" data-fragment-index="12">
                 Qualität
               </h4>
-              <h4 class="fragment" data-fragment-index="6">
-                Koopertation
+              <h4 class="fragment" data-fragment-index="2">
+                Agilität
               </h4>
             </div>
             <div class="lists">
               <ul>
-                <li class="fragment" data-fragment-index="3">Antrag</li>
-                <li class="fragment" data-fragment-index="4">
+                <li class="fragment" data-fragment-index="7">Antrag</li>
+                <li class="fragment" data-fragment-index="8">
                   IHK
                   <ul>
                     <li>PH + LH</li>
@@ -179,7 +239,7 @@
                     </li>
                   </ul>
                 </li>
-                <li class="fragment" data-fragment-index="5">Bericht</li>
+                <li class="fragment" data-fragment-index="9">Bericht</li>
               </ul>
 
               <ul class="quality fragment" data-fragment-index="12">
@@ -189,15 +249,30 @@
                 <li class="fragment" data-fragment-index="14">Testing</li>
                 <li class="fragment" data-fragment-index="15">Automation</li>
               </ul>
-              <ul class="fragment" data-fragment-index="7">
-                <li>Agilität</li>
-                <li class="fragment" data-fragment-index="9">
+              <ul class="fragment" data-fragment-index="3">
+                <li>Kooperation</li>
+                <li class="fragment" data-fragment-index="4">
                   Funktions-übergreifend
                 </li>
-                <li class="fragment" data-fragment-index="10">Kommunikation</li>
+                <li class="fragment" data-fragment-index="5">Kommunikation</li>
               </ul>
             </div>
           </div>
+
+          <aside class="notes">
+            <div style="display: grid; grid-template-columns: 2; ">
+              <div style="grid-column: 1;">
+                - Fokus auf Agilität<br />
+                - Ausbau<br />
+                - Starke Gegensatz zum starren Einflussfaktor Dokumente <br />
+                - Antrag &rarr; IHK Dokuementationsartefakte &rarr; Bericht<br />
+                - Konfliktauflösung &rArr; Qualität dominierende Dimension<br />
+                - Einbindung in gesamtes Projekt<br />
+              </div>
+              <div style="grid-column: 2;">
+              </div>
+            </div>
+          </aside>
         </section>
 
         <!-- <section id="s7-2" class="flex" data-progress-bar-id="1">
@@ -337,10 +412,24 @@
               })
             })
           </script>
-          <div style="align-self: stretch; height: calc(100% - 0.5em);">
+          <div style="align-self: stretch; overflow: hidden; height: calc(100% - 0.5em);">
             <include src="./mastercss/strukturplan_gesamt.css"></include>
             <include src="./img/strukturplan_gesamt.svg"></include>
           </div>
+          <aside class="notes">
+            <div style="display: grid; grid-template-columns: 2; ">
+              <div style="grid-column: 1;">
+                - Widerspruch nicht 100% auflösbar<br />
+                - Zeitlich sehr begrenzt<br />
+                - Gute übereinstimmung mit Sprints<br />
+                &rArr; Wassfall<br />
+                - Anforderungserhebung &rarr; Planung &rarr; Entwurf &rarr; Implementierung &rarr; Abschluss<br />
+                - Entwurf + Planung = Implementierung<br />
+              </div>
+              <div style="grid-column: 2;">
+              </div>
+            </div>
+          </aside>
         </section>
 
         <section id="s11" class="grid-rows" data-progress-bar-id="entwurf">
@@ -469,6 +558,22 @@
             <include src="./mastercss/swagger_snippet.css"></include>
             <include src="./img/swagger_snippet.html"></include>
           </div>
+          <aside class="notes">
+            <div style="display: grid; grid-template-columns: 2; ">
+              <div style="grid-column: 1;">
+                - Nach Planung weiter mit Entwurf<br />
+                - Entwurf wie vorgestellt implementiert<br />
+                - Schnittstellenformat<br />
+                - CRUD für Merkzettel + Merkzetteleinträge  <br />
+                - Definition auch visualisierbar<br />
+                - Pfad + Query<br />
+                - Rückgabe für Normal- und Fehlerfall<br />
+                - Gut geeignet für tests &rarr; Tooling leider noh  nicht so weit<br />
+              </div>
+              <div style="grid-column: 2;">
+              </div>
+            </div>
+          </aside>
         </section>
 
         <section
@@ -583,6 +688,22 @@
             <include src="./mastercss/service_komponenten.css"></include>
             <include src="./img/service_komponenten.svg"></include>
           </div>
+          <aside class="notes">
+            <div style="display: grid; grid-template-columns: 2; ">
+              <div style="grid-column: 1;">
+                - Typscript<br />
+                - Router implementiert HTTP Schnittstelle <br />
+                - KOA<br />
+                - Gibt Middleware inteface vor<br />
+                - Dependecy Injection!
+              </div>
+              <div style="grid-column: 2;">
+                - Query an DB<br />
+                - Trennung Zugriff und Verbindung <br />
+                - Transipilierung für Laufzeitumgebung<br />
+              </div>
+            </div>
+          </aside>
         </section>
 
         <section id="s13" class="grid-rows" data-progress-bar-id="entwurf">
@@ -717,6 +838,16 @@
             <include src="./mastercss/service_request.css"></include>
             <include src="./img/service_request.svg"></include>
           </div>
+          <aside class="notes">
+            <div style="display: grid; grid-template-columns: 2; ">
+              <div style="grid-column: 1;">
+                - Struktur spiegelt sich auch in Kontrollfluss<br />
+                - Errorhandling kann Context verändern<br />
+              </div>
+              <div style="grid-column: 2;">
+              </div>
+            </div>
+          </aside>
         </section>
 
         <section
@@ -1084,6 +1215,52 @@
             <include src="./mastercss/deployment_h.css"></include>
             <include src="./img/deployment_h.svg"></include>
           </div>
+          <aside class="notes">
+            <div style="display: grid; grid-template-columns: 2; ">
+              <div style="grid-column: 1;">
+                - Qualität als hauptmerkmal<br />
+                - Sicherung neben Reviews? &rArr; Bereitstellungsprozess<br />
+                - 4 Schritte<br />
+                - Build erzeugt 3 artefakte<br />
+                1. Unittest => Codebase gegen TestFramework Jest<br />
+                -- Dependecy Injection<br />
+                -- Virtualisierung<br />
+              </div>
+              <div style="grid-column: 2;">
+                2. Release => Virtualisiert Anwendung aus Komponentenentwurf<br />
+                3. Integration => Release + Testdatenbank + Jest<br />
+                - Ausführung Testcontainer<br />
+                - Erfolgreich &rArr; Deployment<br />
+                - Kubernetes als Hypervisor<br />
+                - Erfolgreicher Abschluss des Projekts<br />
+              </div>
+            </div>
+          </aside>
+        </section>
+
+       <section id="s16" class="flex" data-progress-bar-id="resumee">
+          <h1 style="align-self: flex-start; margin-bottom: 1em;">Ergebnis</h1>
+          <div
+            style="
+            align-self: center;
+            display: grid;
+            grid-template-rows: 1fr 1fr 1em 1fr 1fr;
+            grid-template-columns: auto 1fr;
+            grid-gap: 1em;
+            font-size: 0.9em;
+          "
+          >
+
+
+            <div class="fragment" style="color: green;" data-fragment-index="1"> &check; </div>
+            <div class="fragment" data-fragment-index="1"> Lauffähige und Bereitgestellte Anwendung </div>
+            <div class="fragment" style="color: green;" data-fragment-index="2"> &check; </div>
+            <div class="fragment" data-fragment-index="2"> Zeitplanung inklusive Puffer konnte eingehalten werden </div>
+            <div class="fragment" style="color: green;" data-fragment-index="4"> &check; </div>
+            <div class="fragment" data-fragment-index="4"> Qualitätsziele erreicht </div>
+            <div class="fragment" style="color: green;" data-fragment-index="4"> &check; </div>
+            <div class="fragment" data-fragment-index="4"> Folgeprojekte Konnten noch nicht angegangen werden </div>
+          </div>
         </section>
 
         <section id="s15" class="flex" data-progress-bar-id="resumee">
@@ -1135,7 +1312,7 @@
               Hopes:
             </div>
             <div class="fragment" data-fragment-index="4">
-              Feegback für andere Azubis
+              Feedback für andere Azubis
             </div>
           </div>
         </section>

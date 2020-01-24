@@ -2,6 +2,11 @@
   text-align: left;
 }
 
+.overlay.overlay-help.visible td,
+.overlay.overlay-help.visible th {
+  color: white;
+}
+
 .reveal .slides section {
   padding: 0;
 }

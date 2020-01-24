@@ -21,7 +21,7 @@
     </g>
   </g>
 
-  <g id="planung-init" class="fragment">
+  <g id="planung-init" style="transform: translate(-160px, 0px);" class="fragment">
       <g id="planung-init9">
         <path id="planung-Vector_35" d="M593.5 106.5H606.91" stroke="black" stroke-width="5" stroke-miterlimit="10" />
         <path id="planung-Vector_36" d="M617.91 106.5L606.91 110.17V102.83L617.91 106.5Z" fill="black" stroke="black" stroke-width="5" stroke-miterlimit="10" />
