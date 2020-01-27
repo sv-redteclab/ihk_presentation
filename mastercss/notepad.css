@@ -3,6 +3,12 @@
   animation-duration: 1s;
 }
 
+#notepadsvg .remove {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+  display: none !important;
+}
+
 @keyframes arrowExpand {
   from {
     transform: scale(0, 1);

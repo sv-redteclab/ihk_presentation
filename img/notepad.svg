@@ -184,7 +184,7 @@
       </g>
       <g
          id="g1076"
-         class="fragment"
+         class="remove"
          data-fragment-index="7"
 
          transform="matrix(0.26458333,0,0,0.26458333,-38.103926,128.4215)">
@@ -217,7 +217,7 @@
            style="fill:#008000" />
       </g>
       <g
-         class="fragment"
+         class="remove"
          data-fragment-index="7"
          transform="matrix(0.26458333,0,0,0.26458333,-116.68117,128.4215)"
          id="g1088">
@@ -252,7 +252,7 @@
     </g>
    <g
       data-fragment-index="8"
-      class="fragment"
+      class="remove"
       id="trash2">
       <g
          transform="translate(198.04315,-36.402718)">
@@ -328,7 +328,7 @@
       </g>
    </g>
    <g
-      class="fragment"
+      class="remove"
       data-fragment-index="8"
       id="eye2">
       <g
